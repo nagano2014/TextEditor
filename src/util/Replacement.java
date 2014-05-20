@@ -18,9 +18,9 @@ public class Replacement {
 	public JTextArea strReplacement(JTextArea area, String before, String after){
 		while(area.getText().indexOf(before) != -1){
 			int start = area.getText().indexOf(before);
-    		int end = start + before.length();
-    		area.replaceRange(after, start, end);
-    	}
+			int end = start + before.length();
+			area.replaceRange(after, start, end);
+		}
 		return area;
 	}
 }
