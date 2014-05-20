@@ -11,25 +11,25 @@ public class Replacement{
 	/**
 	 * 単語の置換
 	 * @param area 本文
-	 * @param before 置換前の単語
-	 * @param after 置換後の単語
+	 * @param beforeWord 置換前の単語
+	 * @param afterWord 置換後の単語
 	 * @return 置換後の本文
 	 */
-	public JTextArea strReplacement(JTextArea area, String before, String after){
-		while(area.getText().indexOf(before) != -1){
-			int start = area.getText().indexOf(before);
-			int end = start + before.length();
-			area.replaceRange(after, start, end);
+	public JTextArea strReplacement(JTextArea area, String beforeWord, String afterWord){
+		while(area.getText().indexOf(beforeWord) != -1){
+			int start = area.getText().indexOf(beforeWord);
+			int end = start + beforeWord.length();
+			area.replaceRange(afterWord, start, end);
 		}
 		return area;
 	}
 	/**
 	 * 置換可能ならtrue、不可能ならfalseを返す
 	 * @param area 本文
-	 * @param before 置換前の単語
+	 * @param beforeWord 置換前の単語
 	 * @return 置換可能ならtrue
 	 */
-	public boolean canReplace(JTextArea area, String before){
-		return area.getText().indexOf(before) != -1;
+	public boolean canReplace(JTextArea area, String beforeWord){
+		return area.getText().indexOf(beforeWord) != -1;
 	}
 }
