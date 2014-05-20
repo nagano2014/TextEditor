@@ -1,4 +1,4 @@
-package swing;
+package dao;
 
 public class TextDAO {
 
