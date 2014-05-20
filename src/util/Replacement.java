@@ -20,6 +20,7 @@ public class Replacement{
 			int start = area.getText().indexOf(beforeWord);
 			int end = start + beforeWord.length();
 			area.replaceRange(afterWord, start, end);
+			area.select(area.getText().indexOf(afterWord), area.getText().indexOf(afterWord) + afterWord.length());
 		}
 		return area;
 	}
