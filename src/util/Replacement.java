@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
  * @author nagano02
  *
  */
-public class Replacement {
+public class Replacement{
 	/**
 	 * 単語の置換
 	 * @param area 本文
@@ -22,5 +22,14 @@ public class Replacement {
 			area.replaceRange(after, start, end);
 		}
 		return area;
+	}
+	/**
+	 * 置換可能ならtrue、不可能ならfalseを返す
+	 * @param area 本文
+	 * @param before 置換前の単語
+	 * @return 置換可能ならtrue
+	 */
+	public boolean canReplace(JTextArea area, String before){
+		return area.getText().indexOf(before) != -1;
 	}
 }
