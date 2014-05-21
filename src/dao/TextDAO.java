@@ -2,11 +2,18 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import entity.TextEt;
 
 public class TextDAO extends DAO{
 
+	/*
+	 * テキストDAO
+	 * 会津匠
+	 */
+	
 	public int insert(int FileId, int mLineNumber, String mLineContents) {
 		
 		getConnection();
@@ -27,24 +34,26 @@ public class TextDAO extends DAO{
 		return count;
 	}
 	
-	public TextEt select(int mFileId, int mLineNumber, String mLineContents) {
+	public List selectAll() {
 		getConnection();
 		createStmt();
 		
-		TextEt text = null;
+		List<TextEt> list = new ArrayList<TextEt>();
+		
 		ResultSet res = null;
 
 		try {
-			String sql = "(SELECT * FROM m_text";
+			String sql = "SELECT * FROM m_text";
 		
 			res = stmt.executeQuery(sql);
 			
 			boolean countFlg = res.next();
 			if(countFlg) {
-				text = new TextEt();
-				text.setFileId(mFileId);
-				text.setLineNumber(mLineNumber);
-				text.setLineContents(mLineContents);
+				int mFileId = res.getInt("file_id");
+				int mLineNumber = res.getInt("line_number");
+				String mLineContents = res.getString("line_contents");
+				
+				list.add(new TextEt(mFileId, mLineNumber, mLineContents));
 			}
 			res.close();
 		} catch (SQLException e) {
@@ -52,7 +61,6 @@ public class TextDAO extends DAO{
 		}finally{
 			close();
 		}
-		
-		return text;
+		return list;
 	}
 }
