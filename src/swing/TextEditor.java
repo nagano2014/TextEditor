@@ -95,7 +95,10 @@ public class TextEditor extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		// 「開く」メニューを選んだ時
 		if (e.getActionCommand() == "開く"){
-			InputFile.open(textArea);
+			String text = InputFile.open(textArea);
+			if (text != null) {
+				textArea.setText(text);
+			}
 		}
 		// 「保存メニュー」選んだ時
 		if (e.getActionCommand() == "保存") {
