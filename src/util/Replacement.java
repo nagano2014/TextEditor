@@ -4,7 +4,7 @@ import javax.swing.JTextArea;
 
 /**
  * テキスト内の文字置換を行う
- * @author nagano02
+ * @author 塩原
  *
  */
 public class Replacement{
