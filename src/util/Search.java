@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
  */
 public class Search {
 	/**
-	 * 文字検索
+	 * 上から文字検索
 	 * @param area　本文
 	 * @param key　検索ワード
 	 * @return　検索後の本文
@@ -25,6 +25,12 @@ public class Search {
 		
 		return area;
 	}
+	/**
+	 * 下から文字検索
+	 * @param area　本文
+	 * @param key　検索ワード
+	 * @return　検索後の本文
+	 */
 	public static JTextArea strBottomSearch(JTextArea area,String key){
 		
 		String textArea = area.getText();
@@ -39,16 +45,26 @@ public class Search {
 	}
 	
 	/**
-	 * 検索が可能ならtrue、不可能ならばfalseを返す。
+	 * 上からの検索が可能ならtrue、不可能ならばfalseを返す。
 	 * @param area　本文
 	 * @param key　検索ワード
 	 * @return　検索可能ならtrue
 	 */
-	public boolean canSearch(JTextArea area, String key){
+	public boolean canTopSearch(JTextArea area, String key){
 		String textArea = area.getText();
 		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
 		return word.indexOf(key) != -1;
-		
+	}
+	/**
+	 * 下からの検索が可能ならtrue、不可能ならばfalseを返す。
+	 * @param area　本文
+	 * @param key　検索ワード
+	 * @return　検索可能ならtrue
+	 */
+	public boolean canBottomSearch(JTextArea area, String key){
+		String textArea = area.getText();
+		String word = textArea.substring(0, area.getSelectionStart());
+		return word.indexOf(key) != -1;
 	}
 
 }

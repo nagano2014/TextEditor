@@ -132,7 +132,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
-					if (s.canSearch(textArea, text.getText())) {
+					if (s.canTopSearch(textArea, text.getText())) {
 						if (radioButton1.isSelected()){
 							textArea = Search.strTopSearch(textArea, text.getText());
 						} else if (radioButton1.isSelected()){

@@ -6,6 +6,12 @@ public class TextEt {
 	private int mLineNumber;
 	private String mLineContents;
 	
+	/**
+	 * ファイルエンティティ
+	 * @author 高松
+	 *
+	 */
+	
 	public TextEt(){
 		
 	}

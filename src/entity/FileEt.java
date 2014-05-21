@@ -2,6 +2,12 @@ package entity;
 
 import java.util.Date;
 
+/**
+ * ファイルエンティティ
+ * @author 高松
+ *
+ */
+
 public class FileEt {
 	private int mFileId;
 	private String mFilePath;

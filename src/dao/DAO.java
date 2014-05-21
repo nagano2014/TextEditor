@@ -5,6 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * アブストラクトDAO
+ * @author 高松
+ *
+ */
+
 public abstract class DAO {
 	
 	protected Connection con = null;
