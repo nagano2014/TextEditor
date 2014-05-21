@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import util.Replacement;
 
@@ -94,11 +95,11 @@ public class TextEditor extends JFrame implements ActionListener{
 			replace.setLayout(new BoxLayout(replace.getContentPane(), BoxLayout.Y_AXIS));
 			replace.setBounds(200, 200, 400, 150);
 			JLabel label = new JLabel("置換前の文字列");
-			final JTextArea text = new JTextArea(1, 20);
+			final JTextField text = new JTextField(20);
 			panel1.add(label);
 			panel1.add(text);
 			JLabel label2 = new JLabel("置換後の文字列");
-			final JTextArea text2 = new JTextArea(1, 20);
+			final JTextField text2 = new JTextField(20);
 			panel2.add(label2);
 			panel2.add(text2);
 			JButton button = new JButton("置換");
