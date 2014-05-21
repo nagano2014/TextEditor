@@ -12,8 +12,8 @@ public static JTextArea strSearch(JTextArea area,JTextField key){
 		int start = textArea.indexOf(keyword);
 		int end = start + keyword.length();
 		
-		area.setSelectionStart(end+textArea.indexOf(keyword));
-		area.setSelectionEnd(start+keyword.length());
+		area.setSelectionStart(start);
+		area.setSelectionEnd(end);
 
 		area.requestFocus(true);
 		return area;
