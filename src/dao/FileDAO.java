@@ -35,7 +35,7 @@ public class FileDAO extends DAO{
 		return count;
 	}
 	
-	public List selectAll() {
+	public List<FileEt> selectAll() {
 		getConnection();
 		createStmt();
 		

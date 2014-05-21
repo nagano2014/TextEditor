@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.swing.JFileChooser;
-import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -22,27 +21,31 @@ public class InputFile{
 	 * @param parent 親となるコンポーネント
 	 * @return 
 	 */
-	public static JTextArea open(Component parent){
+	public static String open(Component parent){
+		String text = null;
 		String user = System.getenv("USERNAME");
 		JFileChooser chooser = new JFileChooser("C:/Users/" + user + "/Desktop");
 		chooser.addChoosableFileFilter(createTxtFilter());
-		chooser.showOpenDialog(parent);
+		int state = chooser.showOpenDialog(parent);
 		
-		File file = chooser.getSelectedFile();
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br;
-		try{
-			if (file.isFile() && file.canRead()){
-				br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"SHIFT_JIS"));
-				String str;
-				while((str = br.readLine()) != null){
-					sb.append(str + "\n");
+		if(state == JFileChooser.APPROVE_OPTION){
+			File file = chooser.getSelectedFile();
+			StringBuilder sb = new StringBuilder();
+			BufferedReader br;
+			try{
+				if (file.isFile() && file.canRead()){
+					br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"SHIFT_JIS"));
+					String str;
+					while((str = br.readLine()) != null){
+						sb.append(str + "\n");
+					}
+					br.close();
 				}
-				br.close();
+			}catch(IOException err){
 			}
-		}catch(IOException err){
+			text = sb.toString();
 		}
-		return new JTextArea(sb.toString());
+		return text;
 	}
 	private static FileNameExtensionFilter createTxtFilter(){
 		return new FileNameExtensionFilter("txtファイル", "txt", "TXT");

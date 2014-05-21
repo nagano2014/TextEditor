@@ -34,7 +34,7 @@ public class TextDAO extends DAO{
 		return count;
 	}
 	
-	public List selectAll() {
+	public List<TextEt> selectAll() {
 		getConnection();
 		createStmt();
 		
