@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import util.Replacement;
+import util.Search;
 
 public class TextEditor extends JFrame implements ActionListener{
 
@@ -75,11 +76,22 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setLayout(new FlowLayout());
 			search.setBounds(200, 200, 400, 300);
 			JLabel label = new JLabel("条件");
-			JTextArea text = new JTextArea(1, 20);
+			final JTextArea text = new JTextArea(1, 20);
 			JButton button = new JButton("検索");
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
-					// 処理
+					Search s = new Search();
+					if (s.canSearch(textArea, text.getText())) {
+						textArea = Search.strSearch(textArea, text.getText());
+					} else {
+						JFrame replaceError = new JFrame("検索エラー");
+						replaceError.setLayout(new FlowLayout());
+						replaceError.setBounds(200, 200, 400, 150);
+						JLabel errorMessage = new JLabel("検索対象が見つかりませんでした。");
+						replaceError.add(errorMessage);
+						replaceError.setVisible(true);
+					}
+					
 				}
 			});
 			search.add(label);
