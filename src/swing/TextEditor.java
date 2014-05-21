@@ -3,6 +3,7 @@ package swing;
 import io.InputFile;
 
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,12 +44,20 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu1 = new JMenu("ファイル");
 		JMenu menu2 = new JMenu("編集");
+		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		
 		
 		JMenuItem open = new JMenuItem("開く");
 		JMenuItem save = new JMenuItem("保存");
 		JMenuItem generalManagement = new JMenuItem("世代管理");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem replace = new JMenuItem("置換");
+		open.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		save.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		generalManagement.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		search.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		
 		// メニューアイテムの追加
 		menu1.add(open);
@@ -77,14 +86,18 @@ public class TextEditor extends JFrame implements ActionListener{
 	
 	/**
 	 * メニューのボタンを押した時のアクションを定義する
+	 * @param e
 	 */
 	public void actionPerformed(ActionEvent e){
+		// 「開く」メニューを選んだ時
 		if (e.getActionCommand() == "開く"){
 			InputFile.open(textArea);
 		}
+		// 「保存メニュー」選んだ時
 		if (e.getActionCommand() == "保存") {
 			
 		}
+		// 「世代管理」メニューを選んだ時
 		if (e.getActionCommand() == "世代管理") {
 			final JFrame general = new JFrame("世代管理");
 			final JLabel label = new JLabel("作成年月日");
@@ -118,6 +131,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.add(panel3);
 			general.setVisible(true);
 		}
+		// 「保存」メニューを選んだ時
 		if (e.getActionCommand() == "検索") {
 			final JFrame search = new JFrame("検索");
 			final JTextField text = new JTextField(20);
@@ -130,7 +144,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			final JRadioButton radioButton2 = new JRadioButton("下から検索");
 			JLabel label = new JLabel("条件");
 			
-			// 「検索」ボタンが押された時の処理
+			// ボタンが押された時の処理
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
@@ -170,6 +184,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.add(radioButton2);
 			search.setVisible(true);
 		}
+		// 「置換」メニューを選んだ時
 		if (e.getActionCommand() == "置換") {
 			final JFrame replace = new JFrame("置換");
 			final JTextField text = new JTextField(20);
@@ -182,7 +197,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			JLabel label2 = new JLabel("置換後の文字列");
 			JButton button = new JButton("置換");
 			
-			// 「置換」ボタンが押された時の処理
+			// ボタンが押された時の処理
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Replacement r = new Replacement();
