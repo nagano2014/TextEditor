@@ -4,7 +4,7 @@ import javax.swing.JTextArea;
 
 /**
  * テキスト内の文字置換を行う
- * @author nagano02
+ * @author 塩原
  *
  */
 public class Replacement{
@@ -20,8 +20,9 @@ public class Replacement{
 			int start = area.getText().indexOf(beforeWord);
 			int end = start + beforeWord.length();
 			area.replaceRange(afterWord, start, end);
-			area.select(area.getText().indexOf(afterWord), area.getText().indexOf(afterWord) + afterWord.length());
 		}
+		//テキスト内で最後に置換された部分を選択状態にする
+		area.select(area.getText().lastIndexOf(afterWord), area.getText().lastIndexOf(afterWord) + afterWord.length());
 		return area;
 	}
 	/**
