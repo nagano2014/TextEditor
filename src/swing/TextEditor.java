@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -81,17 +82,49 @@ public class TextEditor extends JFrame implements ActionListener{
 			
 		}
 		if (e.getActionCommand() == "世代管理") {
+			final JFrame general = new JFrame("世代管理");
+			final JLabel label = new JLabel("作成年月日");
+			final JLabel year = new JLabel("年");
+			final JLabel month = new JLabel("月");
+			final JLabel day = new JLabel("日");
+			final JComboBox comboYear = new JComboBox(new String[]
+					{});
+			final JComboBox comboMonth = new JComboBox(new String[]
+					{});
+			final JComboBox comboDay = new JComboBox(new String[]
+					{});
+			general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
+			general.setAlwaysOnTop(true);
+			general.setResizable(false);
+			general.setLayout(new FlowLayout());
+			general.setBounds(200, 200, 400, 500);
 			
+			JPanel panel = new JPanel();
+			JPanel panel2 = new JPanel();
+			JPanel panel3 = new JPanel();
+			panel.add(label);
+			panel2.add(year);
+			panel2.add(comboYear);
+			panel2.add(month);
+			panel2.add(comboMonth);
+			panel2.add(day);
+			panel2.add(comboDay);
+			general.add(panel);
+			general.add(panel2);
+			general.add(panel3);
+			general.setVisible(true);
 		}
 		if (e.getActionCommand() == "検索") {
 			final JFrame search = new JFrame("検索");
+			final JTextField text = new JTextField(20);
+			final JButton button = new JButton("検索");
 			search.setAlwaysOnTop(true);
 			search.setResizable(false);
 			search.setLayout(new FlowLayout());
 			search.setBounds(200, 200, 400, 100);
 			JLabel label = new JLabel("条件");
-			final JTextField text = new JTextField(20);
-			final JButton button = new JButton("検索");
+			
+			// 「検索」ボタンが押された時の処理
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
@@ -100,16 +133,16 @@ public class TextEditor extends JFrame implements ActionListener{
 						search.requestFocus();
 						search.setAlwaysOnTop(false);
 					} else {
-						JDialog replaceError = new JDialog(search, "検索エラー", true);
-						replaceError.setLayout(new FlowLayout());
-						replaceError.setBounds(200, 200, 400, 150);
+						JDialog searchError = new JDialog(search, "検索エラー", true);
+						searchError.setLayout(new FlowLayout());
+						searchError.setBounds(200, 200, 400, 150);
 						JLabel errorMessage = new JLabel("検索対象が見つかりませんでした。");
-						replaceError.add(errorMessage);
-						replaceError.setVisible(true);
-					}
-					
+						searchError.add(errorMessage);
+						searchError.setVisible(true);
+					}			
 				}
 			});
+			
 			search.add(label);
 			search.add(text);
 			search.add(button);
@@ -117,26 +150,21 @@ public class TextEditor extends JFrame implements ActionListener{
 		}
 		if (e.getActionCommand() == "置換") {
 			final JFrame replace = new JFrame("置換");
+			final JTextField text = new JTextField(20);
+			final JTextField text2 = new JTextField(20);
 			replace.setAlwaysOnTop(true);
 			replace.setResizable(false);
-			JPanel panel1 = new JPanel();
-			JPanel panel2 = new JPanel();
-			JPanel panel3 = new JPanel();
 			replace.setLayout(new BoxLayout(replace.getContentPane(), BoxLayout.Y_AXIS));
 			replace.setBounds(200, 200, 400, 150);
 			JLabel label = new JLabel("置換前の文字列");
-			final JTextField text = new JTextField(20);
-			panel1.add(label);
-			panel1.add(text);
 			JLabel label2 = new JLabel("置換後の文字列");
-			final JTextField text2 = new JTextField(20);
-			panel2.add(label2);
-			panel2.add(text2);
 			JButton button = new JButton("置換");
-			panel3.add(button);
+			
+			// 「置換」ボタンが押された時の処理
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Replacement r = new Replacement();
+					replace.setAlwaysOnTop(false);
 					if (r.canReplace(textArea, text.getText())) {
 						textArea = r.strReplacement(textArea, text.getText(), text2.getText());
 						replace.requestFocus();
@@ -149,9 +177,17 @@ public class TextEditor extends JFrame implements ActionListener{
 						replaceError.add(errorMessage);
 						replaceError.setVisible(true);
 					}
-					
 				}
 			});
+			
+			JPanel panel1 = new JPanel();
+			JPanel panel2 = new JPanel();
+			JPanel panel3 = new JPanel();
+			panel1.add(label);
+			panel1.add(text);
+			panel2.add(label2);
+			panel2.add(text2);
+			panel3.add(button);
 			replace.add(panel1);
 			replace.add(panel2);
 			replace.add(panel3);
