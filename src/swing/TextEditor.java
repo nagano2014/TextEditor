@@ -124,7 +124,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setResizable(false);
 			search.setLayout(new FlowLayout());
 			search.setBounds(200, 200, 400, 100);
-			final JRadioButton radioButton1 = new JRadioButton("上から検索");
+			final JRadioButton radioButton1 = new JRadioButton("上から検索", true);
 			final JRadioButton radioButton2 = new JRadioButton("下から検索");
 			JLabel label = new JLabel("条件");
 			
