@@ -13,7 +13,7 @@ public class Search {
 	 * @param key　検索ワード
 	 * @return　検索後の本文
 	 */
-	public static JTextArea strSearch(JTextArea area,String key){
+	public static JTextArea strTopSearch(JTextArea area,String key){
 		
 		String textArea = area.getText();
 		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
@@ -25,6 +25,19 @@ public class Search {
 		
 		return area;
 	}
+	public static JTextArea strBottomSearch(JTextArea area,String key){
+		
+		String textArea = area.getText();
+		String word = textArea.substring(0, area.getSelectionStart());
+		
+		area.setSelectionStart(word.lastIndexOf(key));
+		area.setSelectionEnd(area.getSelectionStart() + key.length());
+		
+		area.requestFocus(true);
+		
+		return area;
+	}
+	
 	/**
 	 * 検索が可能ならtrue、不可能ならばfalseを返す。
 	 * @param area　本文
