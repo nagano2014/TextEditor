@@ -10,6 +10,11 @@ import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
+/**
+ * ファイルをテキスト形式で保存する
+ * @author 塩原
+ *
+ */
 public class OutputFile {
 	public static void save(Component parent, JTextArea area){
 		JFileChooser filechooser = new JFileChooser();
