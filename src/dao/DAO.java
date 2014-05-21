@@ -12,7 +12,6 @@ public abstract class DAO {
 		
 	protected void getConnection() {
 		String drv = "com.mysql.jdbc.Driver";
-		
 		String url = "jdbc:mysql://localhost:3306/ver_ctrl_db";
 		String user = "root";
 		String pass = "root";
@@ -21,8 +20,7 @@ public abstract class DAO {
 			return;
 		}
 		try{
-		Class.forName(drv);
-		
+			Class.forName(drv);
 		}catch(ClassNotFoundException e){
 			System.out.println("[conect]異常" + e);
 		}
@@ -41,11 +39,8 @@ public abstract class DAO {
 			return;
 		}
 		
-		getConnection();
-		
 		try{
 			stmt = con.createStatement();
-			
 		}catch(SQLException e){
 			System.out.println("[createStmt]異常" + e);
 		}
@@ -54,7 +49,7 @@ public abstract class DAO {
 	protected void close()  {
 		if(this.stmt != null) {
 			try{
-			this.stmt.close();
+				stmt.close();
 			}catch(SQLException e){
 				System.out.println("[close]異常" + e);
 			}
@@ -64,8 +59,7 @@ public abstract class DAO {
 		
 		if(con != null) {
 			try{
-			this.con.close();
-			
+				con.close();
 			}catch(SQLException e){
 				System.out.println("[close]異常" + e);
 			}
