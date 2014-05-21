@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -14,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -42,20 +44,20 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		JMenuItem open = new JMenuItem("開く");
 		JMenuItem save = new JMenuItem("保存");
-		JMenuItem generalmanagement = new JMenuItem("世代管理");
+		JMenuItem generalManagement = new JMenuItem("世代管理");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem replace = new JMenuItem("置換");
 		
 		// メニューアイテムの追加
 		menu1.add(open);
 		menu1.add(save);
-		menu1.add(generalmanagement);
+		menu1.add(generalManagement);
 		menu2.add(search);
 		menu2.add(replace);
 		// イベントリスクの設定
 		open.addActionListener(this);
 		save.addActionListener(this);
-		generalmanagement.addActionListener(this);
+		generalManagement.addActionListener(this);
 		search.addActionListener(this);
 		replace.addActionListener(this);
 		
@@ -97,7 +99,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.setAlwaysOnTop(true);
 			general.setResizable(false);
 			general.setLayout(new FlowLayout());
-			general.setBounds(200, 200, 400, 500);
+			general.setBounds(200, 200, 250, 500);
 			
 			JPanel panel = new JPanel();
 			JPanel panel2 = new JPanel();
@@ -122,6 +124,8 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setResizable(false);
 			search.setLayout(new FlowLayout());
 			search.setBounds(200, 200, 400, 100);
+			final JRadioButton radioButton1 = new JRadioButton("上から検索");
+			final JRadioButton radioButton2 = new JRadioButton("下から検索");
 			JLabel label = new JLabel("条件");
 			
 			// 「検索」ボタンが押された時の処理
@@ -129,23 +133,32 @@ public class TextEditor extends JFrame implements ActionListener{
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
 					if (s.canSearch(textArea, text.getText())) {
-						textArea = Search.strSearch(textArea, text.getText());
+						if (radioButton1.isSelected()){
+							textArea = Search.strTopSearch(textArea, text.getText());
+						} else if (radioButton1.isSelected()){
+							textArea = Search.strBottomSearch(textArea, text.getText());
+						}
 						search.requestFocus();
 						search.setAlwaysOnTop(false);
 					} else {
 						JDialog searchError = new JDialog(search, "検索エラー", true);
 						searchError.setLayout(new FlowLayout());
-						searchError.setBounds(200, 200, 400, 150);
-						JLabel errorMessage = new JLabel("検索対象が見つかりませんでした。");
+						searchError.setBounds(200, 200, 400, 300);
+						JLabel errorMessage = new JLabel("現在位置より下に検索対象が見つかりませんでした。");
 						searchError.add(errorMessage);
 						searchError.setVisible(true);
 					}			
 				}
 			});
 			
+			ButtonGroup buttonGroup = new ButtonGroup();
+			buttonGroup.add(radioButton1);
+			buttonGroup.add(radioButton2);
 			search.add(label);
 			search.add(text);
 			search.add(button);
+			search.add(radioButton1);
+			search.add(radioButton2);
 			search.setVisible(true);
 		}
 		if (e.getActionCommand() == "置換") {
