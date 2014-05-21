@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,8 +13,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 
+import util.Replacement;
+
 public class TextEditor extends JFrame implements ActionListener{
 
+	static JTextArea textArea = new JTextArea();
+	
 	TextEditor() {
 		JFrame frame = new JFrame("TextEditor");
 		frame.setBounds(100, 100, 800, 600);
@@ -27,8 +32,6 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem generalmanagement = new JMenuItem("世代管理");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem replace = new JMenuItem("置換");
-		
-		JTextArea textArea = new JTextArea();
 		
 		// メニューアイテムの追加
 		menu1.add(open);
@@ -84,16 +87,27 @@ public class TextEditor extends JFrame implements ActionListener{
 		}
 		if (e.getActionCommand() == "置換") {
 			JFrame replace = new JFrame("置換");
-			replace.setLayout(new FlowLayout());
-			replace.setBounds(200, 200, 400, 300);
+			replace.setLayout(new BoxLayout(replace.getContentPane(), BoxLayout.Y_AXIS));
+			replace.setBounds(200, 200, 400, 150);
 			JLabel label = new JLabel("置換前の文字列");
-			JTextArea text = new JTextArea(1, 20);
+			final JTextArea text = new JTextArea(1, 20);
 			JLabel label2 = new JLabel("置換後の文字列");
-			JTextArea text2 = new JTextArea(1, 20);
+			final JTextArea text2 = new JTextArea(1, 20);
 			JButton button = new JButton("置換");
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
-					// 処理
+					Replacement r = new Replacement();
+					if (r.canReplace(textArea, text.getText())) {
+						textArea = r.strReplacement(textArea, text.getText(), text2.getText());
+					} else {
+						JFrame replaceError = new JFrame("置換エラー");
+						replaceError.setLayout(new FlowLayout());
+						replaceError.setBounds(200, 200, 400, 150);
+						JLabel errorMessage = new JLabel("置換対象が見つかりませんでした。");
+						replaceError.add(errorMessage);
+						replaceError.setVisible(true);
+					}
+					
 				}
 			});
 			replace.add(label);

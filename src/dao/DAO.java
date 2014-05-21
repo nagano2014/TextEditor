@@ -1,4 +1,4 @@
-package dao;
+/*package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -69,3 +69,4 @@ public abstract class DAO {
 		this.con = null;
 	}
 }
+*/
