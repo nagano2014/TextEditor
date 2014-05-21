@@ -1,16 +1,14 @@
 package util;
 
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class Search {
-public static JTextArea strSearch(JTextArea area,JTextField key){
+public static JTextArea strSearch(JTextArea area,String key){
 		
 		String textArea = area.getText();
-		String keyword = key.getText();
 
-		int start = textArea.indexOf(keyword);
-		int end = start + keyword.length();
+		int start = textArea.indexOf(key);
+		int end = start + key.length();
 		
 		area.setSelectionStart(start);
 		area.setSelectionEnd(end);
