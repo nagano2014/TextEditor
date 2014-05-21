@@ -18,10 +18,18 @@ import javax.swing.JTextField;
 import util.Replacement;
 import util.Search;
 
+/**
+ * TextEditor本体
+ * @author 徳武
+ *
+ */
 public class TextEditor extends JFrame implements ActionListener{
 
 	static JTextArea textArea = new JTextArea();
 	
+	/**
+	 * TextEditorの本体画面を構成する
+	 */
 	TextEditor() {
 		JFrame frame = new JFrame("TextEditor");
 		frame.setBounds(100, 100, 800, 600);
@@ -61,6 +69,9 @@ public class TextEditor extends JFrame implements ActionListener{
 		new TextEditor();
 	}
 	
+	/**
+	 * メニューのボタンを押した時のアクションを定義する
+	 */
 	public void actionPerformed(ActionEvent e){
 		if (e.getActionCommand() == "開く"){
 			
@@ -76,7 +87,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setLayout(new FlowLayout());
 			search.setBounds(200, 200, 400, 300);
 			JLabel label = new JLabel("条件");
-			final JTextArea text = new JTextArea(1, 20);
+			final JTextField text = new JTextField(20);
 			JButton button = new JButton("検索");
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
