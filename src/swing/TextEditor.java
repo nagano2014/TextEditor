@@ -128,8 +128,8 @@ public class TextEditor extends JFrame implements ActionListener{
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
-					if (s.canBottomSearch(textArea, text.getText())) {
-						textArea = Search.strBottomSearch(textArea, text.getText());
+					if (s.canSearch(textArea, text.getText())) {
+						textArea = Search.strSearch(textArea, text.getText());
 						search.requestFocus();
 						search.setAlwaysOnTop(false);
 					} else {
