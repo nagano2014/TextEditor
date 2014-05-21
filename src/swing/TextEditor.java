@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -83,19 +84,23 @@ public class TextEditor extends JFrame implements ActionListener{
 			
 		}
 		if (e.getActionCommand() == "検索") {
-			JFrame search = new JFrame("検索");
+			final JFrame search = new JFrame("検索");
+			search.setAlwaysOnTop(true);
+			search.setResizable(false);
 			search.setLayout(new FlowLayout());
-			search.setBounds(200, 200, 400, 300);
+			search.setBounds(200, 200, 400, 100);
 			JLabel label = new JLabel("条件");
 			final JTextField text = new JTextField(20);
-			JButton button = new JButton("検索");
+			final JButton button = new JButton("検索");
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
 					if (s.canSearch(textArea, text.getText())) {
 						textArea = Search.strSearch(textArea, text.getText());
+						search.requestFocus();
+						search.setAlwaysOnTop(false);
 					} else {
-						JFrame replaceError = new JFrame("検索エラー");
+						JDialog replaceError = new JDialog(search, "検索エラー", true);
 						replaceError.setLayout(new FlowLayout());
 						replaceError.setBounds(200, 200, 400, 150);
 						JLabel errorMessage = new JLabel("検索対象が見つかりませんでした。");
@@ -111,7 +116,9 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setVisible(true);
 		}
 		if (e.getActionCommand() == "置換") {
-			JFrame replace = new JFrame("置換");
+			final JFrame replace = new JFrame("置換");
+			replace.setAlwaysOnTop(true);
+			replace.setResizable(false);
 			JPanel panel1 = new JPanel();
 			JPanel panel2 = new JPanel();
 			JPanel panel3 = new JPanel();
@@ -132,8 +139,10 @@ public class TextEditor extends JFrame implements ActionListener{
 					Replacement r = new Replacement();
 					if (r.canReplace(textArea, text.getText())) {
 						textArea = r.strReplacement(textArea, text.getText(), text2.getText());
+						replace.requestFocus();
+						replace.setAlwaysOnTop(false);
 					} else {
-						JFrame replaceError = new JFrame("置換エラー");
+						JDialog replaceError = new JDialog(replace, "置換エラー", true);
 						replaceError.setLayout(new FlowLayout());
 						replaceError.setBounds(200, 200, 400, 150);
 						JLabel errorMessage = new JLabel("置換対象が見つかりませんでした。");
