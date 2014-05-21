@@ -16,14 +16,14 @@ public class Search {
 	public static JTextArea strSearch(JTextArea area,String key){
 		
 		String textArea = area.getText();
-
-		int start = textArea.indexOf(key);
-		int end = start + key.length();
 		
-		area.setSelectionStart(start);
-		area.setSelectionEnd(end);
-
+		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
+		
+		area.setSelectionStart(area.getSelectionEnd()+ word.indexOf(key));
+		area.setSelectionEnd(area.getSelectionStart()+ key.length());
+		
 		area.requestFocus(true);
+		
 		return area;
 	}
 	/**
