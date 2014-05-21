@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.FileEt;
 import entity.TextEt;
 
 public class TextDAO extends DAO{
@@ -39,7 +38,7 @@ public class TextDAO extends DAO{
 		getConnection();
 		createStmt();
 		
-		List<FileEt> list = new ArrayList<FileEt>();
+		List<TextEt> list = new ArrayList<TextEt>();
 		
 		ResultSet res = null;
 
