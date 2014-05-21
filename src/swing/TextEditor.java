@@ -91,12 +91,14 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setBounds(200, 200, 400, 100);
 			JLabel label = new JLabel("条件");
 			final JTextField text = new JTextField(20);
-			JButton button = new JButton("検索");
+			final JButton button = new JButton("検索");
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
 					if (s.canSearch(textArea, text.getText())) {
 						textArea = Search.strSearch(textArea, text.getText());
+						search.requestFocus();
+						search.setAlwaysOnTop(false);
 					} else {
 						JDialog replaceError = new JDialog(search, "検索エラー", true);
 						replaceError.setLayout(new FlowLayout());
@@ -137,6 +139,8 @@ public class TextEditor extends JFrame implements ActionListener{
 					Replacement r = new Replacement();
 					if (r.canReplace(textArea, text.getText())) {
 						textArea = r.strReplacement(textArea, text.getText(), text2.getText());
+						replace.requestFocus();
+						replace.setAlwaysOnTop(false);
 					} else {
 						JDialog replaceError = new JDialog(replace, "置換エラー", true);
 						replaceError.setLayout(new FlowLayout());
