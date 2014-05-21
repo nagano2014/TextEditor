@@ -132,34 +132,29 @@ public class TextEditor extends JFrame implements ActionListener{
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
-					if (s.canTopSearch(textArea, text.getText())) {
-						if (radioButton1.isSelected()){
+					if (radioButton1.isSelected()) {
+						if (s.canTopSearch(textArea, text.getText())) {
 							textArea = Search.strTopSearch(textArea, text.getText());
-						}
-					if (s.canBottomSearch(textArea, text.getText())) {
-						if (radioButton2.isSelected()){
-							textArea = Search.strBottomSearch(textArea, text.getText());
-						}
-					}
-						search.requestFocus();
-						search.setAlwaysOnTop(false);
-					} else {
-						if (radioButton1.isSelected()) {
+						} else {
 							JDialog searchError = new JDialog(search, "検索エラー", true);
 							searchError.setLayout(new FlowLayout());
-							searchError.setBounds(200, 200, 400, 300);
+							searchError.setBounds(200, 200, 400, 100);
 							JLabel errorMessage = new JLabel("現在位置より下に検索対象が見つかりませんでした。");
 							searchError.add(errorMessage);
 							searchError.setVisible(true);
-						} else if (radioButton2.isSelected()) {
+						}
+					} else if (radioButton2.isSelected()) {
+						if (s.canBottomSearch(textArea, text.getText())) {
+							textArea = Search.strBottomSearch(textArea, text.getText());
+						} else {
 							JDialog searchError = new JDialog(search, "検索エラー", true);
 							searchError.setLayout(new FlowLayout());
-							searchError.setBounds(200, 200, 400, 300);
+							searchError.setBounds(200, 200, 400, 100);
 							JLabel errorMessage = new JLabel("現在位置より上に検索対象が見つかりませんでした。");
 							searchError.add(errorMessage);
 							searchError.setVisible(true);
-						}			
-					}			
+						}
+					}
 				}
 			});
 			
@@ -191,7 +186,7 @@ public class TextEditor extends JFrame implements ActionListener{
 					Replacement r = new Replacement();
 					replace.setAlwaysOnTop(false);
 					if (r.canReplace(textArea, text.getText())) {
-						textArea = r.strReplacement(textArea, text.getText(), text2.getText());
+						textArea = r.strReplace(textArea, text.getText(), text2.getText());
 						replace.requestFocus();
 						replace.setAlwaysOnTop(false);
 					} else {
