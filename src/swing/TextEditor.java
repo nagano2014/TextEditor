@@ -1,5 +1,7 @@
 package swing;
 
+import io.InputFile;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,7 +80,7 @@ public class TextEditor extends JFrame implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e){
 		if (e.getActionCommand() == "開く"){
-			
+			InputFile.open(textArea);
 		}
 		if (e.getActionCommand() == "保存") {
 			
