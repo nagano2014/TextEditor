@@ -1,6 +1,5 @@
 package io;
 
-import java.awt.Component;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,9 +15,9 @@ import javax.swing.JTextArea;
  *
  */
 public class OutputFile {
-	public static void save(Component parent, JTextArea area){
+	public static void save(JTextArea area){
 		JFileChooser filechooser = new JFileChooser();
-		int state = filechooser.showSaveDialog(parent);
+		int state = filechooser.showSaveDialog(area);
 		
 		if(state == JFileChooser.APPROVE_OPTION){
 			File file = filechooser.getSelectedFile();
