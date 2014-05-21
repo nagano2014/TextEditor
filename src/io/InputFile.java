@@ -15,7 +15,7 @@ public class InputFile{
 	 * @param parent 親となるコンポーネント
 	 * @return 
 	 */
-	public int open(Component parent){
+	public static int open(Component parent){
 		JFileChooser chooser = new JFileChooser();
 		return chooser.showOpenDialog(parent);
 	}
