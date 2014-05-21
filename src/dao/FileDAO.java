@@ -30,13 +30,12 @@ public class FileDAO extends DAO{
 		return count;
 	}
 	
-	public List selectAll() {
+	public List<FileEt> selectAll() {
 		getConnection();
 		createStmt();
 		
 		List<FileEt> list = new ArrayList<FileEt>();
 		
-		FileEt file = null;
 		ResultSet res = null;
 		
 		try {
