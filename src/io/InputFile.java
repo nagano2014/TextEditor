@@ -10,6 +10,11 @@ import javax.swing.JFileChooser;
  *
  */
 public class InputFile{
+	/**
+	 * ファイル選択ダイアログを開く
+	 * @param parent 親となるコンポーネント
+	 * @return 
+	 */
 	public int open(Component parent){
 		JFileChooser chooser = new JFileChooser();
 		return chooser.showOpenDialog(parent);
