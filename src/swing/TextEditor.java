@@ -135,18 +135,30 @@ public class TextEditor extends JFrame implements ActionListener{
 					if (s.canTopSearch(textArea, text.getText())) {
 						if (radioButton1.isSelected()){
 							textArea = Search.strTopSearch(textArea, text.getText());
-						} else if (radioButton1.isSelected()){
+						}
+					if (s.canBottomSearch(textArea, text.getText())) {
+						if (radioButton2.isSelected()){
 							textArea = Search.strBottomSearch(textArea, text.getText());
 						}
+					}
 						search.requestFocus();
 						search.setAlwaysOnTop(false);
 					} else {
-						JDialog searchError = new JDialog(search, "検索エラー", true);
-						searchError.setLayout(new FlowLayout());
-						searchError.setBounds(200, 200, 400, 300);
-						JLabel errorMessage = new JLabel("現在位置より下に検索対象が見つかりませんでした。");
-						searchError.add(errorMessage);
-						searchError.setVisible(true);
+						if (radioButton1.isSelected()) {
+							JDialog searchError = new JDialog(search, "検索エラー", true);
+							searchError.setLayout(new FlowLayout());
+							searchError.setBounds(200, 200, 400, 300);
+							JLabel errorMessage = new JLabel("現在位置より下に検索対象が見つかりませんでした。");
+							searchError.add(errorMessage);
+							searchError.setVisible(true);
+						} else if (radioButton2.isSelected()) {
+							JDialog searchError = new JDialog(search, "検索エラー", true);
+							searchError.setLayout(new FlowLayout());
+							searchError.setBounds(200, 200, 400, 300);
+							JLabel errorMessage = new JLabel("現在位置より上に検索対象が見つかりませんでした。");
+							searchError.add(errorMessage);
+							searchError.setVisible(true);
+						}			
 					}			
 				}
 			});
