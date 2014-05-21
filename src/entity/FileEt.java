@@ -17,34 +17,28 @@ public class FileEt {
 		mFileMakeDay = filemd;
 	}
 	
-	public int getFileid(){
+	public int getFileId(){
 		return mFileId;
 	}
 	
-	public void setFileid(int fileid){
+	public void setFileId(int fileid){
 		mFileId = fileid;
 	}
 	
-	public String getFilepath(){
+	public String getFilePath(){
 		return mFilePath;
 	}
 	
-	public void setFileid(String filepath){
+	public void setFilePath(String filepath){
 		mFilePath = filepath;
 	}
 	
-	public Date getFilemd(){
+	public Date getFileMd(){
 		return mFileMakeDay;
 	}
 	
-	public void setFileid(Date filemd){
+	public void setFileMd(Date filemd){
 		mFileMakeDay = filemd;
-	}
-	
-	@Override
-	public String toString(){
-		String buffer = "[FileEt: fileid:"+mFileId +" filepath:"+ mFilePath +" filemd:" + mFileMakeDay +"]";
-		return buffer;
 	}
 	
 }

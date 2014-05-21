@@ -16,34 +16,28 @@ public class TextEt {
 		mLineContents = linecon;
 	}
 	
-	public int getFileid(){
+	public int getFileId(){
 		return mFileId;
 	}
 	
-	public void setFileid(int fileid){
+	public void setFileId(int fileid){
 		mFileId = fileid;
 	}
 	
-	public int getLinenumber(){
+	public int getLineNumber(){
 		return mLineNumber;
 	}
 	
-	public void setLinenumber(int linenum){
+	public void setLineNumber(int linenum){
 		mLineNumber = linenum;
 	}
 	
-	public String getLinecontents(){
+	public String getLineContents(){
 		return mLineContents;
 	}
 	
-	public void setFileid(String linecon){
+	public void setLineContents(String linecon){
 		mLineContents = linecon;
-	}
-	
-	@Override
-	public String toString(){
-		String buffer = "[FileEt: fileid:"+mFileId +" linenum:"+ mLineNumber +" linecon:" + mLineContents +"]";
-		return buffer;
 	}
 
 }
