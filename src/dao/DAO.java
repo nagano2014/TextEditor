@@ -1,4 +1,4 @@
-/*package dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,10 +7,10 @@ import java.sql.Statement;
 
 public abstract class DAO {
 	
-	private Connection con = null;
-	private Statement stmt = null;
+	protected Connection con = null;
+	protected Statement stmt = null;
 		
-	protected void getConnection() throws DAOException {
+	protected void getConnection() throws SQLException, ClassNotFoundException {
 		String drv = "com.mysql.jdbc.Driver";
 		
 		String url = "jdbc:mysql://localhost:3306/ver_ctrl_db";
@@ -21,52 +21,29 @@ public abstract class DAO {
 			return;
 		}
 		
-		try {
-			Class.forName(drv);
-		} catch (ClassNotFoundException e) {
-			throw new DAOException("[conect]異常", e);
-		}
-		
-		try {
-			con = DriverManager.getConnection(url, user, pass);
-			return;
-		} catch (SQLException e) {
-			throw new DAOException("[conect]異常", e);
-		}
+		Class.forName(drv);
+		con = DriverManager.getConnection(url, user, pass);
 	}
 	
-	protected void createStmt() throws DAOException {
+	protected void createStmt() throws SQLException, ClassNotFoundException {
 		if(this.stmt != null) {
 			return;
 		}
 		
 		getConnection();
 		
-		try {
-			stmt = con.createStatement();
-		} catch(SQLException e) {
-			throw new DAOException("[createStmt]異常", e);
-		}
+		stmt = con.createStatement();
 	}
 	
-	protected void close() throws DAOException {
+	protected void close() throws SQLException {
 		if(this.stmt != null) {
-			try {
-				this.stmt.close();
-			} catch (SQLException e) {
-				throw new DAOException("[close]異常", e);
-			}
+			this.stmt.close();
 		}
 		this.stmt = null;
 		
 		if(con != null) {
-			try {
-				this.con.close();
-			} catch(SQLException e) {
-				throw new DAOException("[close]異常", e);
-			}
+			this.con.close();
 		}
 		this.con = null;
 	}
 }
-*/
