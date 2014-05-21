@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import util.Replacement;
@@ -87,13 +88,21 @@ public class TextEditor extends JFrame implements ActionListener{
 		}
 		if (e.getActionCommand() == "置換") {
 			JFrame replace = new JFrame("置換");
+			JPanel panel1 = new JPanel();
+			JPanel panel2 = new JPanel();
+			JPanel panel3 = new JPanel();
 			replace.setLayout(new BoxLayout(replace.getContentPane(), BoxLayout.Y_AXIS));
 			replace.setBounds(200, 200, 400, 150);
 			JLabel label = new JLabel("置換前の文字列");
 			final JTextArea text = new JTextArea(1, 20);
+			panel1.add(label);
+			panel1.add(text);
 			JLabel label2 = new JLabel("置換後の文字列");
 			final JTextArea text2 = new JTextArea(1, 20);
+			panel2.add(label2);
+			panel2.add(text2);
 			JButton button = new JButton("置換");
+			panel3.add(button);
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Replacement r = new Replacement();
@@ -110,11 +119,9 @@ public class TextEditor extends JFrame implements ActionListener{
 					
 				}
 			});
-			replace.add(label);
-			replace.add(text);
-			replace.add(label2);
-			replace.add(text2);
-			replace.add(button);
+			replace.add(panel1);
+			replace.add(panel2);
+			replace.add(panel3);
 			replace.setVisible(true);
 		}
 	}
