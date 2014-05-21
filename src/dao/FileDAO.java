@@ -10,6 +10,11 @@ import entity.FileEt;
 
 public class FileDAO extends DAO{
 	
+	/*
+	 * ファイルDAO
+	 * 会津匠
+	 */
+	
 	public int insert(int mFileId, String mFilePath, Date mFileMakeDay) {
 		
 		getConnection();
@@ -36,7 +41,6 @@ public class FileDAO extends DAO{
 		
 		List<FileEt> list = new ArrayList<FileEt>();
 		
-		FileEt file = null;
 		ResultSet res = null;
 		
 		try {
@@ -49,10 +53,11 @@ public class FileDAO extends DAO{
 				int mFileId = res.getInt("file_id");
 				String mFilePath = res.getString("file_path");
 				Date mFileMd = res.getDate("file_make_day");
+				
 				list.add(new FileEt(mFileId, mFilePath, mFileMd));
 			}
 			res.close();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println(e);
 		}finally{
 			close();
