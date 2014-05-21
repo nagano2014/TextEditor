@@ -16,14 +16,13 @@ public class Search {
 	public static JTextArea strSearch(JTextArea area,String key){
 		
 		String textArea = area.getText();
-
-		int start = textArea.indexOf(key);
-		int end = start + key.length();
+		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
 		
-		area.setSelectionStart(start);
-		area.setSelectionEnd(end);
-
+		area.setSelectionStart(area.getSelectionEnd()+ word.indexOf(key));
+		area.setSelectionEnd(area.getSelectionStart()+ key.length());
+		
 		area.requestFocus(true);
+		
 		return area;
 	}
 	/**
@@ -33,7 +32,10 @@ public class Search {
 	 * @return　検索可能ならtrue
 	 */
 	public boolean canSearch(JTextArea area, String key){
-		return area.getText().indexOf(key) != -1;
+		String textArea = area.getText();
+		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
+		return word.indexOf(key) != -1;
+		
 	}
 
 }
