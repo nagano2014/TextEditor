@@ -9,8 +9,8 @@ import javax.swing.JFileChooser;
  * @author 塩原
  *
  */
-public class Open{
-	public int fileOpen(Component parent){
+public class InputFile{
+	public int open(Component parent){
 		JFileChooser chooser = new JFileChooser();
 		return chooser.showOpenDialog(parent);
 	}
