@@ -15,7 +15,7 @@ public class Replacement{
 	 * @param afterWord 置換後の単語
 	 * @return 置換後の本文
 	 */
-	public JTextArea strReplacement(JTextArea area, String beforeWord, String afterWord){
+	public JTextArea strReplace(JTextArea area, String beforeWord, String afterWord){
 		while(area.getText().indexOf(beforeWord) != -1){
 			int start = area.getText().indexOf(beforeWord);
 			int end = start + beforeWord.length();

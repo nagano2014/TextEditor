@@ -1,10 +1,14 @@
 package swing;
 
+import io.InputFile;
+
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -14,6 +18,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -39,23 +44,31 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu1 = new JMenu("ファイル");
 		JMenu menu2 = new JMenu("編集");
+		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		
 		
 		JMenuItem open = new JMenuItem("開く");
 		JMenuItem save = new JMenuItem("保存");
-		JMenuItem generalmanagement = new JMenuItem("世代管理");
+		JMenuItem generalManagement = new JMenuItem("世代管理");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem replace = new JMenuItem("置換");
+		open.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		save.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		generalManagement.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		search.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		
 		// メニューアイテムの追加
 		menu1.add(open);
 		menu1.add(save);
-		menu1.add(generalmanagement);
+		menu1.add(generalManagement);
 		menu2.add(search);
 		menu2.add(replace);
 		// イベントリスクの設定
 		open.addActionListener(this);
 		save.addActionListener(this);
-		generalmanagement.addActionListener(this);
+		generalManagement.addActionListener(this);
 		search.addActionListener(this);
 		replace.addActionListener(this);
 		
@@ -73,14 +86,18 @@ public class TextEditor extends JFrame implements ActionListener{
 	
 	/**
 	 * メニューのボタンを押した時のアクションを定義する
+	 * @param e
 	 */
 	public void actionPerformed(ActionEvent e){
+		// 「開く」メニューを選んだ時
 		if (e.getActionCommand() == "開く"){
-			
+			InputFile.open(textArea);
 		}
+		// 「保存メニュー」選んだ時
 		if (e.getActionCommand() == "保存") {
 			
 		}
+		// 「世代管理」メニューを選んだ時
 		if (e.getActionCommand() == "世代管理") {
 			final JFrame general = new JFrame("世代管理");
 			final JLabel label = new JLabel("作成年月日");
@@ -97,7 +114,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.setAlwaysOnTop(true);
 			general.setResizable(false);
 			general.setLayout(new FlowLayout());
-			general.setBounds(200, 200, 400, 500);
+			general.setBounds(200, 200, 250, 500);
 			
 			JPanel panel = new JPanel();
 			JPanel panel2 = new JPanel();
@@ -114,6 +131,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.add(panel3);
 			general.setVisible(true);
 		}
+		// 「保存」メニューを選んだ時
 		if (e.getActionCommand() == "検索") {
 			final JFrame search = new JFrame("検索");
 			final JTextField text = new JTextField(20);
@@ -122,32 +140,51 @@ public class TextEditor extends JFrame implements ActionListener{
 			search.setResizable(false);
 			search.setLayout(new FlowLayout());
 			search.setBounds(200, 200, 400, 100);
+			final JRadioButton radioButton1 = new JRadioButton("上から検索", true);
+			final JRadioButton radioButton2 = new JRadioButton("下から検索");
 			JLabel label = new JLabel("条件");
 			
-			// 「検索」ボタンが押された時の処理
+			// ボタンが押された時の処理
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Search s = new Search();
-					if (s.canSearch(textArea, text.getText())) {
-						textArea = Search.strSearch(textArea, text.getText());
-						search.requestFocus();
-						search.setAlwaysOnTop(false);
-					} else {
-						JDialog searchError = new JDialog(search, "検索エラー", true);
-						searchError.setLayout(new FlowLayout());
-						searchError.setBounds(200, 200, 400, 150);
-						JLabel errorMessage = new JLabel("検索対象が見つかりませんでした。");
-						searchError.add(errorMessage);
-						searchError.setVisible(true);
-					}			
+					if (radioButton1.isSelected()) {
+						if (s.canTopSearch(textArea, text.getText())) {
+							textArea = Search.strTopSearch(textArea, text.getText());
+						} else {
+							JDialog searchError = new JDialog(search, "検索エラー", true);
+							searchError.setLayout(new FlowLayout());
+							searchError.setBounds(200, 200, 400, 100);
+							JLabel errorMessage = new JLabel("現在位置より下に検索対象が見つかりませんでした。");
+							searchError.add(errorMessage);
+							searchError.setVisible(true);
+						}
+					} else if (radioButton2.isSelected()) {
+						if (s.canBottomSearch(textArea, text.getText())) {
+							textArea = Search.strBottomSearch(textArea, text.getText());
+						} else {
+							JDialog searchError = new JDialog(search, "検索エラー", true);
+							searchError.setLayout(new FlowLayout());
+							searchError.setBounds(200, 200, 400, 100);
+							JLabel errorMessage = new JLabel("現在位置より上に検索対象が見つかりませんでした。");
+							searchError.add(errorMessage);
+							searchError.setVisible(true);
+						}
+					}
 				}
 			});
 			
+			ButtonGroup buttonGroup = new ButtonGroup();
+			buttonGroup.add(radioButton1);
+			buttonGroup.add(radioButton2);
 			search.add(label);
 			search.add(text);
 			search.add(button);
+			search.add(radioButton1);
+			search.add(radioButton2);
 			search.setVisible(true);
 		}
+		// 「置換」メニューを選んだ時
 		if (e.getActionCommand() == "置換") {
 			final JFrame replace = new JFrame("置換");
 			final JTextField text = new JTextField(20);
@@ -160,13 +197,13 @@ public class TextEditor extends JFrame implements ActionListener{
 			JLabel label2 = new JLabel("置換後の文字列");
 			JButton button = new JButton("置換");
 			
-			// 「置換」ボタンが押された時の処理
+			// ボタンが押された時の処理
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					Replacement r = new Replacement();
 					replace.setAlwaysOnTop(false);
 					if (r.canReplace(textArea, text.getText())) {
-						textArea = r.strReplacement(textArea, text.getText(), text2.getText());
+						textArea = r.strReplace(textArea, text.getText(), text2.getText());
 						replace.requestFocus();
 						replace.setAlwaysOnTop(false);
 					} else {
