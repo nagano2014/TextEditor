@@ -19,7 +19,7 @@ public static JTextArea strSearch(JTextArea area,JTextField key){
 		return area;
 	}
 	
-	public boolean canReplace(JTextArea area, String key){
+	public boolean canSearch(JTextArea area, String key){
 		return area.getText().indexOf(key) != -1;
 	}
 
