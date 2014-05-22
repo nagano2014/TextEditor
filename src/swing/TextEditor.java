@@ -14,13 +14,11 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -38,14 +36,12 @@ import util.Search;
 public class TextEditor extends JFrame implements ActionListener{
 
 	static JTextArea textArea = new JTextArea();
-	JFrame frame = new JFrame("TextEditor");
-	JEditorPane editorPane;
 	
 	/**
 	 * TextEditorの本体画面を構成する
 	 */
 	TextEditor() {
-		
+		JFrame frame = new JFrame("TextEditor");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menuBar = new JMenuBar();
@@ -89,7 +85,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		frame.add(scrollPane);
-		frame.add(new JScrollPane(editorPane));
+		//frame.add(new JScrollPane(editorPane));
 		// メニューバーをフレームに設定
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
@@ -152,13 +148,9 @@ public class TextEditor extends JFrame implements ActionListener{
 		// 「印刷」メニューを選んだ時
 		if (e.getActionCommand() == "印刷") {
 			try {
-				editorPane.print();
-			} catch (PrinterException ex) {
-				JOptionPane.showMessageDialog(
-	                    frame, 
-	                    "印刷に失敗しました",
-	                    "印刷失敗",
-	                    JOptionPane.WARNING_MESSAGE);
+				textArea.print();
+			} catch (PrinterException e1) {
+				e1.printStackTrace();
 			}
 		}
 		// 「保存」メニューを選んだ時
