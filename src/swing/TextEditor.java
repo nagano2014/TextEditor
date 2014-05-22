@@ -175,6 +175,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			button2.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent actionevent){
 					textArea = gm.getText(array.get(list.getSelectedIndex()));
+					//System.out.println("asdfdgfh");
 				}
 			});
 			
