@@ -22,7 +22,7 @@ public class FileDAO extends DAO{
 		
 		int count = 0;
 		
-		String sql = "(INSERT INTO m_file VALUES(" + mFileId + ", '" + mFilePath + "', '" + mFileMakeDay + "')";
+		String sql = "INSERT INTO m_file VALUES(" + mFileId + ", '" + mFilePath + "', '" + mFileMakeDay + "')";
 		
 		try {
 			count = stmt.executeUpdate(sql);
@@ -63,5 +63,25 @@ public class FileDAO extends DAO{
 			close();
 		}
 		return list;
+	}
+	
+	public int getLatestFileId(){
+		int id = -1;
+		ResultSet res = null;
+		String sql = "SELECT MAX(file_id) as file_id FROM m_file";
+		getConnection();
+		createStmt();
+		
+		try{
+			res = stmt.executeQuery(sql);
+			while(res.next()){
+				id = res.getInt("file_id");
+			}
+		}catch (SQLException e) {
+			
+		}finally{
+			close();
+		}
+		return id;
 	}
 }
