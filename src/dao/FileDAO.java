@@ -3,6 +3,7 @@ package dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class FileDAO extends DAO{
 			while(res.next()) {
 				int mFileId = res.getInt("file_id");
 				String mFilePath = res.getString("file_path");
-				Date mFileMd = res.getDate("file_make_day");
+				Timestamp mFileMd = res.getTimestamp("file_make_day");
 				
 				list.add(new FileEt(mFileId, mFilePath, mFileMd));
 			}

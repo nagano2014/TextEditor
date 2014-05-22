@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -12,13 +13,13 @@ import java.util.Date;
 public class FileEt {
 	private int mFileId;
 	private String mFilePath;
-	private Date mFileMakeDay;
+	private Timestamp mFileMakeDay;
 	
 	public FileEt(){
 		
 	}
 	
-	public FileEt(int fileid, String filepath, Date filemd){
+	public FileEt(int fileid, String filepath, Timestamp filemd){
 		mFileId = fileid;
 		mFilePath = filepath;
 		mFileMakeDay = filemd;
@@ -44,7 +45,7 @@ public class FileEt {
 		return mFileMakeDay;
 	}
 	
-	public void setFileMd(Date filemd){
+	public void setFileMd(Timestamp filemd){
 		mFileMakeDay = filemd;
 	}
 	
