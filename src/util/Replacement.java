@@ -32,6 +32,6 @@ public class Replacement{
 	 * @return 置換可能ならtrue
 	 */
 	public boolean canReplace(JTextArea area, String beforeWord){
-		return area.getText().indexOf(beforeWord) != -1;
+		return area.getText().indexOf(beforeWord) != -1 && !area.getText().equals("");
 	}
 }
