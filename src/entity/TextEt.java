@@ -7,7 +7,7 @@ public class TextEt {
 	private String mLineContents;
 	
 	/**
-	 * ファイルエンティティ
+	 * テキストエンティティ
 	 * @author 高松
 	 *
 	 */
