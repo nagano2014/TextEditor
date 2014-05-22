@@ -59,7 +59,7 @@ public class GenerationManager {
 		List<TextEt> list = new ArrayList<TextEt>();
 		list = tDao.selectByFileId(fileId);
 		for(TextEt e : list){
-			sb.append(e.getLineContents());
+			sb.append(e.getLineContents() + "\n");
 		}
 		return sb.toString();
 	}
