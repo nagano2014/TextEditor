@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,7 +43,7 @@ import entity.FileEt;
  */
 public class TextEditor extends JFrame implements ActionListener{
 
-	static JTextArea textArea = new JTextArea();
+	static JTextArea textArea = new JTextArea();	
 	
 	/**
 	 * TextEditorの本体画面を構成する
@@ -149,19 +150,30 @@ public class TextEditor extends JFrame implements ActionListener{
 					  "25", "26", "27", "28", "29", "30", "31"});
 			comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
 			
-			GenerationManager gm = new GenerationManager();
-			DefaultListModel model = new DefaultListModel();
-			JList list = new JList(model);
-			List<FileEt> fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
-			for (FileEt fileEt : fileList) {
-				model.add(fileEt.getFileId(), fileEt.getFilePath() + fileEt.getFileMd());
-			}
-			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			//System.out.println(fileList);
+			JButton button = new JButton("決定");
+			final DefaultListModel model = new DefaultListModel();
+			final JList list;
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent actionevent){
+					list = new JList(model);
+					GenerationManager gm = new GenerationManager();					
+					List<FileEt> fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
+					List<Integer> array = new ArrayList<Integer>();
+					for (FileEt fileEt : fileList) {
+						array.add(fileEt.getFileId());
+						model.addElement(fileEt.getFilePath() + fileEt.getFileMd());
+						System.out.println(fileList.size());
+					}
+					list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);	
+				}
+			});
+			
+			
+				
 			
 			general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 			general.setAlwaysOnTop(true);
-			general.setResizable(false);
+			//general.setResizable(false);
 			general.setLayout(new FlowLayout());
 			general.setBounds(200, 200, 240, 500);
 			
@@ -175,7 +187,8 @@ public class TextEditor extends JFrame implements ActionListener{
 			panel2.add(comboMonth);
 			panel2.add(day);
 			panel2.add(comboDay);
-			panel3.add(list);
+			panel2.add(button);
+			//panel3.add(list);
 			general.add(panel);
 			general.add(panel2);
 			general.add(panel3);
