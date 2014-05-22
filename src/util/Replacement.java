@@ -16,7 +16,7 @@ public class Replacement{
 	 * @return 置換後の本文
 	 */
 	public JTextArea strReplace(JTextArea area, String beforeWord, String afterWord){
-		while(area.getText().indexOf(beforeWord) != -1){
+		while(area.getText().indexOf(beforeWord) != -1 && !beforeWord.equals("")){
 			int start = area.getText().indexOf(beforeWord);
 			int end = start + beforeWord.length();
 			area.replaceRange(afterWord, start, end);
@@ -32,6 +32,6 @@ public class Replacement{
 	 * @return 置換可能ならtrue
 	 */
 	public boolean canReplace(JTextArea area, String beforeWord){
-		return area.getText().indexOf(beforeWord) != -1 && !area.getText().equals("");
+		return area.getText().indexOf(beforeWord) != -1 && !area.getText().equals("") && !beforeWord.equals("");
 	}
 }

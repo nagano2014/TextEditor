@@ -15,14 +15,14 @@ public class FileDAO extends DAO{
 	 * 会津匠
 	 */
 	
-	public int insert(int mFileId, String mFilePath, Date mFileMakeDay) {
+	public int insert(String mFilePath) {
 		
 		getConnection();
 		createStmt();
 		
 		int count = 0;
 		
-		String sql = "INSERT INTO m_file VALUES(" + mFileId + ", '" + mFilePath + "', '" + mFileMakeDay + "')";
+		String sql = "INSERT INTO m_file VALUES(0 , '" + mFilePath + "', NOW())";
 		
 		try {
 			count = stmt.executeUpdate(sql);
@@ -35,7 +35,7 @@ public class FileDAO extends DAO{
 		return count;
 	}
 	
-	public List<FileEt> selectAll() {
+	public List<FileEt> selectByDate(Date date) {
 		getConnection();
 		createStmt();
 		
@@ -44,12 +44,11 @@ public class FileDAO extends DAO{
 		ResultSet res = null;
 		
 		try {
-			String sql = "SELECT * FROM m_file";
+			String sql = "SELECT * FROM m_file WHERE file_make_day = '" + date + "'";
 			
 			res = stmt.executeQuery(sql);
 			
-			boolean countFlg = res.next();
-			if(countFlg) {
+			while(res.next()) {
 				int mFileId = res.getInt("file_id");
 				String mFilePath = res.getString("file_path");
 				Date mFileMd = res.getDate("file_make_day");

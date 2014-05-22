@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.util.List;
 
 import dao.FileDAO;
 import dao.TextDAO;
+import entity.FileEt;
 
 public class GenerationManager {
 	/**
@@ -19,12 +21,11 @@ public class GenerationManager {
 		//ファイル情報の書き込み
 		FileDAO fDao = new FileDAO();
 		String path = file.getAbsolutePath().replaceAll("\\\\", "/");
-		fDao.insert(0, path, new Date(System.currentTimeMillis()));
+		fDao.insert(path);
 		
 		//テキスト内容の書き込み
 		TextDAO tDao = new TextDAO();
 		int fileId = fDao.getLatestFileId();
-		System.out.println(fileId);
 		int lineNumber = 0;
 		BufferedReader br;
 		try{
@@ -39,5 +40,10 @@ public class GenerationManager {
 			}
 		}catch(IOException err){
 		}
+	}
+
+	public List<FileEt> getFileList(Date date){
+		FileDAO fDao = new FileDAO();
+		return fDao.selectByDate(date);
 	}
 }
