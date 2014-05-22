@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import dao.FileDAO;
@@ -42,8 +43,10 @@ public class GenerationManager {
 		}
 	}
 
-	public List<FileEt> getFileList(Date date){
+	public List<FileEt> getFileList(String year, String month, String day){
 		FileDAO fDao = new FileDAO();
-		return fDao.selectByDate(date);
+		Calendar c = Calendar.getInstance();
+		c.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+		return fDao.selectByDate(new Date(c.getTimeInMillis()));
 	}
 }
