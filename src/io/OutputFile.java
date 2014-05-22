@@ -9,11 +9,6 @@ import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
-/**
- * ファイルをテキスト形式で保存する
- * @author 塩原
- *
- */
 public class OutputFile {
 	public static void save(JTextArea area){
 		JFileChooser filechooser = new JFileChooser();
@@ -21,7 +16,7 @@ public class OutputFile {
 		
 		if(state == JFileChooser.APPROVE_OPTION){
 			File file = filechooser.getSelectedFile();
-			
+			String[] strs = area.getText().split("\n");
 			try {
 				PrintWriter pw;
 				if (file.toString().substring(file.toString().length() - 4).equals(".txt")) {
@@ -29,8 +24,11 @@ public class OutputFile {
 				}else{
 					pw = new PrintWriter(new BufferedWriter(new FileWriter(file + ".txt")));
 				}
-					pw.println(area.getText()); // 書き込み処理
-	            pw.close(); // ライタを閉じる
+				for(String str : strs){
+					pw.println(str);
+				}
+				pw.flush();
+	            pw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
