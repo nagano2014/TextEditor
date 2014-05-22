@@ -1,11 +1,13 @@
 package swing;
 
 import io.InputFile;
+import io.OutputFile;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -52,11 +54,13 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem open = new JMenuItem("開く");
 		JMenuItem save = new JMenuItem("保存");
 		JMenuItem generalManagement = new JMenuItem("世代管理");
+		JMenuItem print = new JMenuItem("印刷");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem replace = new JMenuItem("置換");
 		open.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		save.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		generalManagement.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		print.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		search.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		
@@ -64,12 +68,14 @@ public class TextEditor extends JFrame implements ActionListener{
 		menu1.add(open);
 		menu1.add(save);
 		menu1.add(generalManagement);
+		menu1.add(print);
 		menu2.add(search);
 		menu2.add(replace);
 		// イベントリスクの設定
 		open.addActionListener(this);
 		save.addActionListener(this);
 		generalManagement.addActionListener(this);
+		print.addActionListener(this);
 		search.addActionListener(this);
 		replace.addActionListener(this);
 		
@@ -79,6 +85,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		frame.add(scrollPane);
+		//frame.add(new JScrollPane(editorPane));
 		// メニューバーをフレームに設定
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
@@ -102,7 +109,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		}
 		// 「保存メニュー」選んだ時
 		if (e.getActionCommand() == "保存") {
-			
+			OutputFile.save(textArea);
 		}
 		// 「世代管理」メニューを選んだ時
 		if (e.getActionCommand() == "世代管理") {
@@ -137,6 +144,14 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.add(panel2);
 			general.add(panel3);
 			general.setVisible(true);
+		}
+		// 「印刷」メニューを選んだ時
+		if (e.getActionCommand() == "印刷") {
+			try {
+				textArea.print();
+			} catch (PrinterException e1) {
+				e1.printStackTrace();
+			}
 		}
 		// 「保存」メニューを選んだ時
 		if (e.getActionCommand() == "検索") {

@@ -22,16 +22,19 @@ public class OutputFile {
 				if (file.toString().substring(file.toString().length() - 4).equals(".txt")) {
 					pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 				}else{
-					pw = new PrintWriter(new BufferedWriter(new FileWriter(file + ".txt")));
+					file = new File(file.getPath() + ".txt");
+					pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 				}
 				for(String str : strs){
 					pw.println(str);
 				}
 				pw.flush();
-	            pw.close();
+				pw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			GenerationManager gm = new GenerationManager();
+			gm.insertGeneration(file);
 		}
 	}
 }
