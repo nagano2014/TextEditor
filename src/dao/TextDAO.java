@@ -34,7 +34,7 @@ public class TextDAO extends DAO{
 		return count;
 	}
 	
-	public List<TextEt> selectAll() {
+	public List<TextEt> selectByFileId(int fileId) {
 		getConnection();
 		createStmt();
 		
@@ -43,12 +43,11 @@ public class TextDAO extends DAO{
 		ResultSet res = null;
 
 		try {
-			String sql = "SELECT * FROM m_text";
+			String sql = "SELECT * FROM m_text WHERE file_id = " + fileId;
 		
 			res = stmt.executeQuery(sql);
 			
-			boolean countFlg = res.next();
-			if(countFlg) {
+			while(res.next()) {
 				int mFileId = res.getInt("file_id");
 				int mLineNumber = res.getInt("line_number");
 				String mLineContents = res.getString("line_contents");

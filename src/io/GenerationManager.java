@@ -6,12 +6,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import dao.FileDAO;
 import dao.TextDAO;
 import entity.FileEt;
+import entity.TextEt;
 
 public class GenerationManager {
 	/**
@@ -51,7 +53,14 @@ public class GenerationManager {
 		Date date2 = new Date(c.getTimeInMillis() + 86400000);
 		return fDao.selectByDate(date1, date2);
 	}
-	public String getText(int fileiId){
-		return "（YOKUILFYｙぐｙょｖｋふおｇ";
+	public String getText(int fileId){
+		StringBuilder sb = new StringBuilder();
+		TextDAO tDao = new TextDAO();
+		List<TextEt> list = new ArrayList<TextEt>();
+		list = tDao.selectByFileId(fileId);
+		for(TextEt e : list){
+			sb.append(e.getLineContents());
+		}
+		return sb.toString();
 	}
 }
