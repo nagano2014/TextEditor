@@ -53,7 +53,7 @@ public class Search {
 	public boolean canTopSearch(JTextArea area, String key){
 		String textArea = area.getText();
 		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
-		return word.indexOf(key) != -1;
+		return word.indexOf(key) != -1 && !area.getText().equals("");
 	}
 	/**
 	 * 下からの検索が可能ならtrue、不可能ならばfalseを返す。
@@ -64,7 +64,7 @@ public class Search {
 	public boolean canBottomSearch(JTextArea area, String key){
 		String textArea = area.getText();
 		String word = textArea.substring(0, area.getSelectionStart());
-		return word.indexOf(key) != -1;
+		return word.indexOf(key) != -1 && !area.getText().equals("");
 	}
 
 }
