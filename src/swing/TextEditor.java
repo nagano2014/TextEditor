@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.util.Calendar;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -16,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -56,6 +58,10 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem generalManagement = new JMenuItem("世代管理");
 		JMenuItem print = new JMenuItem("印刷");
 		JMenuItem search = new JMenuItem("検索");
+		/*if(textArea.getText().equals("")){
+			search.setEnabled(false);
+		}*/
+		
 		JMenuItem replace = new JMenuItem("置換");
 		open.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		save.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
@@ -85,7 +91,6 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		frame.add(scrollPane);
-		//frame.add(new JScrollPane(editorPane));
 		// メニューバーをフレームに設定
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
@@ -118,12 +123,20 @@ public class TextEditor extends JFrame implements ActionListener{
 			final JLabel year = new JLabel("年");
 			final JLabel month = new JLabel("月");
 			final JLabel day = new JLabel("日");
+			Calendar cal = Calendar.getInstance();
 			final JComboBox comboYear = new JComboBox(new String[]
-					{});
+					{"2014", "2015", "2016", "2017", "2018", "2019", "2020"});
+			comboYear.setSelectedItem(String.valueOf(cal.get(Calendar.YEAR)));
 			final JComboBox comboMonth = new JComboBox(new String[]
-					{});
+					{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+			comboMonth.setSelectedItem(String.valueOf(cal.get(Calendar.MONTH) + 1));
 			final JComboBox comboDay = new JComboBox(new String[]
-					{});
+					{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+					  "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24",
+					  "25", "26", "27", "28", "29", "30", "31"});
+			comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+			
+			JList list = new JList();
 			general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 			general.setAlwaysOnTop(true);
 			general.setResizable(false);
@@ -153,7 +166,7 @@ public class TextEditor extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		// 「保存」メニューを選んだ時
+		// 「検索」メニューを選んだ時
 		if (e.getActionCommand() == "検索") {
 			final JFrame search = new JFrame("検索");
 			final JTextField text = new JTextField(20);
