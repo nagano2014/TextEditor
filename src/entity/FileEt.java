@@ -6,7 +6,7 @@ import java.util.Date;
  * ファイルエンティティ
  * @author 高松
  * 
- *データの取得と格納
+ * データの取得と格納
  */
 
 public class FileEt {

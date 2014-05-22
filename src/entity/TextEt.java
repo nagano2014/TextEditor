@@ -10,7 +10,7 @@ public class TextEt {
 	 * テキストエンティティ
 	 * @author 高松
 	 *
-	 *データの取得と格納
+	 * データの取得と格納
 	 */
 	
 	public TextEt(){

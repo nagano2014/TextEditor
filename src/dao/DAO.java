@@ -9,7 +9,7 @@ import java.sql.Statement;
  * アブストラクトDAO
  * @author 高松
  *
- *データベース接続の取得とステートメントの習得
+ * データベース接続の取得とステートメントの習得
  */
 
 public abstract class DAO {
