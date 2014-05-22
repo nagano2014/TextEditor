@@ -9,8 +9,6 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.swing.JTextArea;
-
 import dao.FileDAO;
 import dao.TextDAO;
 import entity.FileEt;
@@ -53,7 +51,7 @@ public class GenerationManager {
 		Date date2 = new Date(c.getTimeInMillis() + 86400000);
 		return fDao.selectByDate(date1, date2);
 	}
-	public JTextArea getText(int fileiId){
-		return new JTextArea();
+	public String getText(int fileiId){
+		return "（YOKUILFYｙぐｙょｖｋふおｇ";
 	}
 }
