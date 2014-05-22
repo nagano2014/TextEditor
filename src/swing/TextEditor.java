@@ -1,22 +1,26 @@
 package swing;
 
 import io.InputFile;
+import io.OutputFile;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -34,12 +38,14 @@ import util.Search;
 public class TextEditor extends JFrame implements ActionListener{
 
 	static JTextArea textArea = new JTextArea();
+	JFrame frame = new JFrame("TextEditor");
+	JEditorPane editorPane;
 	
 	/**
 	 * TextEditorの本体画面を構成する
 	 */
 	TextEditor() {
-		JFrame frame = new JFrame("TextEditor");
+		
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menuBar = new JMenuBar();
@@ -52,11 +58,13 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem open = new JMenuItem("開く");
 		JMenuItem save = new JMenuItem("保存");
 		JMenuItem generalManagement = new JMenuItem("世代管理");
+		JMenuItem print = new JMenuItem("印刷");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem replace = new JMenuItem("置換");
 		open.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		save.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		generalManagement.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		print.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		search.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		
@@ -64,12 +72,14 @@ public class TextEditor extends JFrame implements ActionListener{
 		menu1.add(open);
 		menu1.add(save);
 		menu1.add(generalManagement);
+		menu1.add(print);
 		menu2.add(search);
 		menu2.add(replace);
 		// イベントリスクの設定
 		open.addActionListener(this);
 		save.addActionListener(this);
 		generalManagement.addActionListener(this);
+		print.addActionListener(this);
 		search.addActionListener(this);
 		replace.addActionListener(this);
 		
@@ -79,6 +89,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		frame.add(scrollPane);
+		frame.add(new JScrollPane(editorPane));
 		// メニューバーをフレームに設定
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
@@ -102,7 +113,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		}
 		// 「保存メニュー」選んだ時
 		if (e.getActionCommand() == "保存") {
-			
+			OutputFile.save(textArea);
 		}
 		// 「世代管理」メニューを選んだ時
 		if (e.getActionCommand() == "世代管理") {
@@ -137,6 +148,18 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.add(panel2);
 			general.add(panel3);
 			general.setVisible(true);
+		}
+		// 「印刷」メニューを選んだ時
+		if (e.getActionCommand() == "印刷") {
+			try {
+				editorPane.print();
+			} catch (PrinterException ex) {
+				JOptionPane.showMessageDialog(
+	                    frame, 
+	                    "印刷に失敗しました",
+	                    "印刷失敗",
+	                    JOptionPane.WARNING_MESSAGE);
+			}
 		}
 		// 「保存」メニューを選んだ時
 		if (e.getActionCommand() == "検索") {
