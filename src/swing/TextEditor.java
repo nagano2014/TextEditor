@@ -1,5 +1,6 @@
 package swing;
 
+import io.GenerationManager;
 import io.InputFile;
 import io.OutputFile;
 
@@ -9,9 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -30,6 +33,7 @@ import javax.swing.ListSelectionModel;
 
 import util.Replacement;
 import util.Search;
+import entity.FileEt;
 
 /**
  * TextEditor本体
@@ -60,6 +64,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem print = new JMenuItem("印刷");
 		JMenuItem search = new JMenuItem("検索");
 		JMenuItem cut = new JMenuItem("切り取り");
+		JMenuItem paste = new JMenuItem("貼り付け");
 		/*if(textArea.getText().equals("")){
 			search.setEnabled(false);
 		}*/
@@ -71,6 +76,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		print.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		search.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		cut.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		paste.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		
 		// メニューアイテムの追加
 		menu1.add(open);
@@ -79,6 +86,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		menu1.add(print);
 		menu2.add(search);
 		menu2.add(replace);
+		menu2.add(cut);
+		menu2.add(paste);
 		// イベントリスクの設定
 		open.addActionListener(this);
 		save.addActionListener(this);
@@ -86,6 +95,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		print.addActionListener(this);
 		search.addActionListener(this);
 		replace.addActionListener(this);
+		cut.addActionListener(this);
+		paste.addActionListener(this);
 		
 		menuBar.add(menu1);
 		menuBar.add(menu2);
@@ -138,8 +149,16 @@ public class TextEditor extends JFrame implements ActionListener{
 					  "25", "26", "27", "28", "29", "30", "31"});
 			comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
 			
-			JList list = new JList(new Integer[] {1, 2, 3});
+			GenerationManager gm = new GenerationManager();
+			DefaultListModel model = new DefaultListModel();
+			JList list = new JList(model);
+			List<FileEt> fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
+			for (FileEt fileEt : fileList) {
+				model.add(fileEt.getFileId(), fileEt.getFilePath() + fileEt.getFileMd());
+			}
 			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			//System.out.println(fileList);
+			
 			general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 			general.setAlwaysOnTop(true);
 			general.setResizable(false);
@@ -268,6 +287,14 @@ public class TextEditor extends JFrame implements ActionListener{
 			replace.add(panel2);
 			replace.add(panel3);
 			replace.setVisible(true);
+		}
+		// 「切り取り」メニューを選んだ時
+		if (e.getActionCommand() == "切り取り") {
+			textArea.cut();
+		}
+		// 「貼り付け」メニューを選んだ時
+		if (e.getActionCommand() == "貼り付け") {
+			textArea.paste();
 		}
 	}
 
