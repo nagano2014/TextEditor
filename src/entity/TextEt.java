@@ -7,9 +7,10 @@ public class TextEt {
 	private String mLineContents;
 	
 	/**
-	 * ファイルエンティティ
+	 * テキストエンティティ
 	 * @author 高松
 	 *
+	 * データの取得と格納
 	 */
 	
 	public TextEt(){
