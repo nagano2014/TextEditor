@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import util.Replacement;
 import util.Search;
@@ -58,6 +59,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem generalManagement = new JMenuItem("世代管理");
 		JMenuItem print = new JMenuItem("印刷");
 		JMenuItem search = new JMenuItem("検索");
+		JMenuItem cut = new JMenuItem("切り取り");
 		/*if(textArea.getText().equals("")){
 			search.setEnabled(false);
 		}*/
@@ -136,12 +138,13 @@ public class TextEditor extends JFrame implements ActionListener{
 					  "25", "26", "27", "28", "29", "30", "31"});
 			comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
 			
-			JList list = new JList();
+			JList list = new JList(new Integer[] {1, 2, 3});
+			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 			general.setAlwaysOnTop(true);
 			general.setResizable(false);
 			general.setLayout(new FlowLayout());
-			general.setBounds(200, 200, 250, 500);
+			general.setBounds(200, 200, 240, 500);
 			
 			JPanel panel = new JPanel();
 			JPanel panel2 = new JPanel();
@@ -153,6 +156,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			panel2.add(comboMonth);
 			panel2.add(day);
 			panel2.add(comboDay);
+			panel3.add(list);
 			general.add(panel);
 			general.add(panel2);
 			general.add(panel3);
