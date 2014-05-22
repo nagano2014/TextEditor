@@ -19,7 +19,7 @@ public class InputFile{
 	/**
 	 * ファイル選択ダイアログを開く
 	 * @param parent 親となるコンポーネント
-	 * @return 
+	 * @return 開かなかった場合null
 	 */
 	public static String open(Component parent){
 		String text = null;
