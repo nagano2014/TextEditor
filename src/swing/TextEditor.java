@@ -1,5 +1,6 @@
 package swing;
 
+import io.GenerationManager;
 import io.InputFile;
 import io.OutputFile;
 
@@ -8,15 +9,19 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,9 +30,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import util.Replacement;
 import util.Search;
+import entity.FileEt;
 
 /**
  * TextEditor本体
@@ -37,6 +44,9 @@ import util.Search;
 public class TextEditor extends JFrame implements ActionListener{
 
 	static JTextArea textArea = new JTextArea();
+	static List<FileEt> fileList;
+	static List<Integer> array;
+	private GenerationManager gm = new GenerationManager();	
 	
 	
 	/**
@@ -144,24 +154,29 @@ public class TextEditor extends JFrame implements ActionListener{
 					  "25", "26", "27", "28", "29", "30", "31"});
 			comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
 			
-			JButton button = new JButton("決定");
-			/*final DefaultListModel model = new DefaultListModel();
-			final JList list;
+			JButton button = new JButton("選択");
+			final DefaultListModel model = new DefaultListModel();
+			final JList list = new JList(model);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent actionevent){
-					list = new JList(model);
-					GenerationManager gm = new GenerationManager();					
-					List<FileEt> fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
-					List<Integer> array = new ArrayList<Integer>();
+					model.clear();
+					//GenerationManager gm = new GenerationManager();	
+					fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
+					array = new ArrayList<Integer>();
 					for (FileEt fileEt : fileList) {
 						array.add(fileEt.getFileId());
 						model.addElement(fileEt.getFilePath() + fileEt.getFileMd());
-						System.out.println(fileList.size());
 					}
-					list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-					//panel3.add(list);
+					list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);					
 				}
-			});*/
+			});
+			
+			JButton button2 = new JButton("開く");
+			button2.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent actionevent){
+					textArea = gm.getText(array.get(list.getSelectedIndex()));
+				}
+			});
 			
 			
 				
@@ -170,20 +185,21 @@ public class TextEditor extends JFrame implements ActionListener{
 			general.setAlwaysOnTop(true);
 			//general.setResizable(false);
 			general.setLayout(new FlowLayout());
-			general.setBounds(200, 200, 240, 500);
+			general.setBounds(200, 200, 370, 300);
 			
 			JPanel panel = new JPanel();
 			JPanel panel2 = new JPanel();
 			JPanel panel3 = new JPanel();
 			panel.add(label);
-			panel2.add(year);
 			panel2.add(comboYear);
-			panel2.add(month);
+			panel2.add(year);
 			panel2.add(comboMonth);
-			panel2.add(day);
+			panel2.add(month);
 			panel2.add(comboDay);
+			panel2.add(day);
 			panel2.add(button);
-			//panel3.add(list);
+			panel2.add(button2);
+			panel3.add(list);
 			general.add(panel);
 			general.add(panel2);
 			general.add(panel3);
