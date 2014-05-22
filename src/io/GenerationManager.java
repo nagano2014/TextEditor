@@ -54,6 +54,6 @@ public class GenerationManager {
 		return fDao.selectByDate(date1, date2);
 	}
 	public JTextArea getText(int fileiId){
-		return null;
+		return new JTextArea();
 	}
 }
