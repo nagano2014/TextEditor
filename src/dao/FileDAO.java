@@ -35,7 +35,7 @@ public class FileDAO extends DAO{
 		return count;
 	}
 	
-	public List<FileEt> selectByDate(Date date) {
+	public List<FileEt> selectByDate(Date date1, Date date2) {
 		getConnection();
 		createStmt();
 		
@@ -44,7 +44,7 @@ public class FileDAO extends DAO{
 		ResultSet res = null;
 		
 		try {
-			String sql = "SELECT * FROM m_file WHERE file_make_day = '" + date + "'";
+			String sql = "SELECT * FROM m_file WHERE file_make_day BETWEEN '" + date1 + "' AND '" + date2 + "'";
 			
 			res = stmt.executeQuery(sql);
 			

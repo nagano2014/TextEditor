@@ -46,7 +46,9 @@ public class GenerationManager {
 	public List<FileEt> getFileList(String year, String month, String day){
 		FileDAO fDao = new FileDAO();
 		Calendar c = Calendar.getInstance();
-		c.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-		return fDao.selectByDate(new Date(c.getTimeInMillis()));
+		c.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+		Date date1 = new Date(c.getTimeInMillis());
+		Date date2 = new Date(c.getTimeInMillis() + 86400000);
+		return fDao.selectByDate(date1, date2);
 	}
 }
