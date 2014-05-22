@@ -1,6 +1,5 @@
 package swing;
 
-import io.GenerationManager;
 import io.InputFile;
 import io.OutputFile;
 
@@ -9,19 +8,15 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -30,11 +25,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 import util.Replacement;
 import util.Search;
-import entity.FileEt;
 
 /**
  * TextEditor本体
@@ -43,7 +36,8 @@ import entity.FileEt;
  */
 public class TextEditor extends JFrame implements ActionListener{
 
-	static JTextArea textArea = new JTextArea();	
+	static JTextArea textArea = new JTextArea();
+	
 	
 	/**
 	 * TextEditorの本体画面を構成する
@@ -151,7 +145,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
 			
 			JButton button = new JButton("決定");
-			final DefaultListModel model = new DefaultListModel();
+			/*final DefaultListModel model = new DefaultListModel();
 			final JList list;
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent actionevent){
@@ -164,9 +158,10 @@ public class TextEditor extends JFrame implements ActionListener{
 						model.addElement(fileEt.getFilePath() + fileEt.getFileMd());
 						System.out.println(fileList.size());
 					}
-					list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);	
+					list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					//panel3.add(list);
 				}
-			});
+			});*/
 			
 			
 				
