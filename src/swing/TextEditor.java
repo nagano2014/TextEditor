@@ -239,18 +239,13 @@ public class TextEditor extends JFrame implements ActionListener{
 					openError.add(errorMessage);
 					openError.setVisible(true);
 				}
-				
 			}
 		});
-		
-		
-			
 		
 		general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 		general.setAlwaysOnTop(true);
 		general.setResizable(false);
 		general.setBounds(200, 200, 600, 150);
-		
 		
 		panel.add(label);
 		panel2.add(comboYear);
