@@ -118,10 +118,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		menuBar.add(menu1);
 		menuBar.add(menu2);
 		frame.add(textArea);
-		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		frame.add(scrollPane);
-		// メニューバーをフレームに設定
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 	}
