@@ -50,7 +50,7 @@ public class Search {
 	 * @param key　検索ワード
 	 * @return　検索可能ならtrue
 	 */
-	public static boolean canTopSearch(JTextArea area, String key){
+	public boolean canTopSearch(JTextArea area, String key){
 		String textArea = area.getText();
 		String word = textArea.substring(area.getSelectionEnd(), textArea.length());
 		return word.indexOf(key) != -1 && !area.getText().equals("");
@@ -61,7 +61,7 @@ public class Search {
 	 * @param key　検索ワード
 	 * @return　検索可能ならtrue
 	 */
-	public static boolean canBottomSearch(JTextArea area, String key){
+	public boolean canBottomSearch(JTextArea area, String key){
 		String textArea = area.getText();
 		String word = textArea.substring(0, area.getSelectionStart());
 		return word.indexOf(key) != -1 && !area.getText().equals("");
