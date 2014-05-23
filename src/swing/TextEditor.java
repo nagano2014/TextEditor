@@ -343,10 +343,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		// ボタンが押された時の処理
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent actionevent){
-				Replacement r = new Replacement();
 				replace.setAlwaysOnTop(false);
-				if (r.canReplace(textArea, text.getText())) {
-					textArea = r.strReplace(textArea, text.getText(), text2.getText());
+				if (Replacement.strReplace(textArea, text.getText(), text2.getText())) {
 					replace.requestFocus();
 					replace.setAlwaysOnTop(false);
 				} else {
