@@ -229,7 +229,17 @@ public class TextEditor extends JFrame implements ActionListener{
 		JButton button2 = new JButton("開く");
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent actionevent){
-				textArea.setText(gm.getText(array.get(box.getSelectedIndex())));
+				try {
+					textArea.setText(gm.getText(array.get(box.getSelectedIndex())));
+				} catch (NullPointerException e) {
+					JDialog openError = new JDialog(general, "オープンエラー", true);
+					openError.setLayout(new FlowLayout());
+					openError.setBounds(300, 200, 400, 100);
+					JLabel errorMessage = new JLabel("開くファイルを選択してください");
+					openError.add(errorMessage);
+					openError.setVisible(true);
+				}
+				
 			}
 		});
 		
