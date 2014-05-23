@@ -261,11 +261,11 @@ public class TextEditor extends JFrame implements ActionListener{
 	 * プリントする
 	 */
 	public void print() {
-			try {
-				textArea.print();
-			} catch (PrinterException e1) {
-				e1.printStackTrace();
-			}		
+		try {
+			textArea.print();
+		} catch (PrinterException e1) {
+			e1.printStackTrace();
+		}		
 	}
 	/**
 	 * 文字列を検索する
