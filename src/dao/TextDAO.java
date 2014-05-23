@@ -26,7 +26,7 @@ public class TextDAO extends DAO{
 		try {
 			count = stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println(lineNumber);
 		}finally{
 			close();
 		}

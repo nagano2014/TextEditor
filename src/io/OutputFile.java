@@ -1,9 +1,9 @@
 package io;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 import javax.swing.JFileChooser;
@@ -19,12 +19,10 @@ public class OutputFile {
 			String[] strs = area.getText().split("\n");
 			try {
 				PrintWriter pw;
-				if (file.toString().substring(file.toString().length() - 4).equals(".txt")) {
-					pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
-				}else{
+				if (!file.toString().substring(file.toString().length() - 4).equals(".txt")) {
 					file = new File(file.getPath() + ".txt");
-					pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 				}
+				pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), "MS932"));
 				for(String str : strs){
 					pw.println(str);
 				}
