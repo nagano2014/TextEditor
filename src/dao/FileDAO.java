@@ -16,14 +16,14 @@ public class FileDAO extends DAO{
 	 * 会津匠
 	 */
 	
-	public int insert(String mFilePath) {
+	public int insert(String filePath) {
 		
 		getConnection();
 		createStmt();
 		
 		int count = 0;
 		
-		String sql = "INSERT INTO m_file VALUES(0 , '" + mFilePath + "', NOW())";
+		String sql = "INSERT INTO m_file VALUES(0 , '" + filePath + "', NOW())";
 		
 		try {
 			count = stmt.executeUpdate(sql);
