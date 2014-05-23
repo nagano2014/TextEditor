@@ -261,21 +261,11 @@ public class TextEditor extends JFrame implements ActionListener{
 	 * プリントする
 	 */
 	public void print() {
-		//if (textArea.getText() != null) {
 			try {
 				textArea.print();
 			} catch (PrinterException e1) {
 				e1.printStackTrace();
-			}
-			/*} else {
-			JFrame printError = new JFrame("印刷エラー");
-			printError.setLayout(new FlowLayout());
-			printError.setBounds(200, 200, 400, 100);
-			JLabel errorMessage = new JLabel("現在位置より上に検索対象が見つかりませんでした。");
-			printError.add(errorMessage);
-			printError.setVisible(true);
-		}*/
-		
+			}		
 	}
 	/**
 	 * 文字列を検索する
