@@ -187,6 +187,8 @@ public class TextEditor extends JFrame implements ActionListener{
 	 * 世代管理をする
 	 */
 	public void gManage(){
+		array = null;
+		fileList = null;
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
 		final JPanel panel3 = new JPanel();
@@ -211,7 +213,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		
 		JButton button = new JButton("日付選択");
-		final GenerationManager gm = new GenerationManager();		
+		final GenerationManager gm = new GenerationManager();
 		final JComboBox box = new JComboBox(new String[]{"選択してください"});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionevent){
