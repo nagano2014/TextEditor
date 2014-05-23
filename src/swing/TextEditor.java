@@ -15,13 +15,11 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -213,12 +211,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		
 		JButton button = new JButton("日付選択");
-		final DefaultListModel model = new DefaultListModel();
-		final GenerationManager gm = new GenerationManager();
-		final JList list = new JList(model);
-		
+		final GenerationManager gm = new GenerationManager();		
 		final JComboBox box = new JComboBox(new String[]{"選択してください"});
-		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionevent){
 				box.removeAllItems();
@@ -235,8 +229,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		JButton button2 = new JButton("開く");
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent actionevent){
-				textArea.setText(gm.getText(array.get(list.getSelectedIndex())));
-				panel3.add(box);
+				textArea.setText(gm.getText(array.get(box.getSelectedIndex())));
 			}
 		});
 		
@@ -246,7 +239,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 		general.setAlwaysOnTop(true);
 		general.setResizable(false);
-		general.setBounds(200, 200, 450, 150);
+		general.setBounds(200, 200, 600, 150);
 		
 		
 		panel.add(label);
@@ -258,7 +251,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		panel2.add(day);
 		panel2.add(button);
 		panel2.add(button2);
-		
+		panel3.add(box);
 		general.add(panel);
 		general.add(panel2);
 		general.add(panel3);
