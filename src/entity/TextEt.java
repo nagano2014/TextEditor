@@ -2,9 +2,9 @@ package entity;
 
 
 public class TextEt {
-	private int mFileId;
-	private int mLineNumber;
-	private String mLineContents;
+	private int fileId;
+	private int lineNumber;
+	private String lineContents;
 	
 	/**
 	 * テキストエンティティ
@@ -17,34 +17,34 @@ public class TextEt {
 		
 	}
 	
-	public TextEt(int fileid, int linenum, String linecon){
-		mFileId = fileid;
-		mLineNumber = linenum;
-		mLineContents = linecon;
+	public TextEt(int fileId, int lineNumber, String lineContents){
+		this.fileId = fileId;
+		this.lineNumber = lineNumber;
+		this.lineContents = lineContents;
 	}
 	
 	public int getFileId(){
-		return mFileId;
+		return fileId;
 	}
 	
-	public void setFileId(int fileid){
-		mFileId = fileid;
+	public void setFileId(int fileId){
+		this.fileId = fileId;
 	}
 	
 	public int getLineNumber(){
-		return mLineNumber;
+		return lineNumber;
 	}
 	
-	public void setLineNumber(int linenum){
-		mLineNumber = linenum;
+	public void setLineNumber(int lineNumber){
+		this.lineNumber = lineNumber;
 	}
 	
 	public String getLineContents(){
-		return mLineContents;
+		return lineContents;
 	}
 	
-	public void setLineContents(String linecon){
-		mLineContents = linecon;
+	public void setLineContents(String lineContents){
+		this.lineContents = lineContents;
 	}
 
 }

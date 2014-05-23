@@ -11,42 +11,42 @@ import java.util.Date;
  */
 
 public class FileEt {
-	private int mFileId;
-	private String mFilePath;
-	private Timestamp mFileMakeDay;
+	private int fileId;
+	private String filePath;
+	private Timestamp fileMakeDay;
 	
 	public FileEt(){
 		
 	}
 	
-	public FileEt(int fileid, String filepath, Timestamp filemd){
-		mFileId = fileid;
-		mFilePath = filepath;
-		mFileMakeDay = filemd;
+	public FileEt(int fileId, String filePath, Timestamp fileMakeDay){
+		this.fileId = fileId;
+		this.filePath = filePath;
+		this.fileMakeDay = fileMakeDay;
 	}
 	
 	public int getFileId(){
-		return mFileId;
+		return fileId;
 	}
 	
-	public void setFileId(int fileid){
-		mFileId = fileid;
+	public void setFileId(int fileId){
+		this.fileId = fileId;
 	}
 	
 	public String getFilePath(){
-		return mFilePath;
+		return filePath;
 	}
 	
-	public void setFilePath(String filepath){
-		mFilePath = filepath;
+	public void setFilePath(String filePath){
+		this.filePath = filePath;
 	}
 	
-	public Date getFileMd(){
-		return mFileMakeDay;
+	public Date getFileMakeDay(){
+		return fileMakeDay;
 	}
 	
-	public void setFileMd(Timestamp filemd){
-		mFileMakeDay = filemd;
+	public void setFileMd(Timestamp fileMakeDay){
+		this.fileMakeDay = fileMakeDay;
 	}
 	
 }

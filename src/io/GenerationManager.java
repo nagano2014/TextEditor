@@ -45,6 +45,13 @@ public class GenerationManager {
 		}
 	}
 
+	/**
+	 * 指定の日付に保存されたファイル一覧を返却する
+	 * @param year 年
+	 * @param month 月
+	 * @param day 日
+	 * @return ファイル一覧
+	 */
 	public List<FileEt> getFileList(String year, String month, String day){
 		FileDAO fDao = new FileDAO();
 		Calendar c = Calendar.getInstance();
@@ -53,6 +60,12 @@ public class GenerationManager {
 		Date date2 = new Date(c.getTimeInMillis() + 86400000);
 		return fDao.selectByDate(date1, date2);
 	}
+	
+	/**
+	 * 指定されたテキストファイルを返却する
+	 * @param fileId 主キー
+	 * @return テキスト
+	 */
 	public String getText(int fileId){
 		StringBuilder sb = new StringBuilder();
 		TextDAO tDao = new TextDAO();

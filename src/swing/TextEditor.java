@@ -220,7 +220,7 @@ public class TextEditor extends JFrame implements ActionListener{
 				array = new ArrayList<Integer>();
 				for (FileEt fileEt : fileList) {
 					array.add(fileEt.getFileId());
-					model.addElement(fileEt.getFilePath() + fileEt.getFileMd());
+					model.addElement(fileEt.getFilePath() + fileEt.getFileMakeDay());
 				}
 				list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);					
 			}

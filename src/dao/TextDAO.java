@@ -14,14 +14,14 @@ public class TextDAO extends DAO{
 	 * 会津匠
 	 */
 	
-	public int insert(int fileId, int mLineNumber, String mLineContents) {
+	public int insert(int fileId, int lineNumber, String lineContents) {
 		
 		getConnection();
 		createStmt();
 		
 		int count = 0;
 		
-		String sql = "INSERT INTO m_text VALUES(" + fileId + ", '" +mLineNumber + "', '" + mLineContents + "')";
+		String sql = "INSERT INTO m_text VALUES(" + fileId + ", '" +lineNumber + "', '" + lineContents + "')";
 		
 		try {
 			count = stmt.executeUpdate(sql);
