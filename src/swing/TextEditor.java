@@ -30,7 +30,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 import util.Replacement;
 import util.Search;
@@ -208,42 +207,25 @@ public class TextEditor extends JFrame implements ActionListener{
 				  "25", "26", "27", "28", "29", "30", "31"});
 		comboDay.setSelectedItem(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
 		
-		JButton button = new JButton("選択");
+		
+		JButton button = new JButton("日付選択");
 		final DefaultListModel model = new DefaultListModel();
 		final GenerationManager gm = new GenerationManager();
-		
 		final JList list = new JList(model);
+		
+		final JComboBox box = new JComboBox(new String[]{"選択してください"});
+		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionevent){
-				model.clear();
+				box.removeAllItems();
 				fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
 				array = new ArrayList<Integer>();
 				for (FileEt fileEt : fileList) {
 					array.add(fileEt.getFileId());
-					model.addElement(fileEt.getFilePath() + fileEt.getFileMakeDay());
+					box.addItem(fileEt.getFilePath() + fileEt.getFileMakeDay());
 				}
-				list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);					
 			}
 		});
-		
-	/*	JButton button = new JButton("選択");
-		final DefaultListModel model = new DefaultListModel();
-		final GenerationManager gm = new GenerationManager();
-		final JList list = new JList(model);
-		JComboBox box = new JComboBox();
-		box.setEditable(true);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionevent){
-				model.clear();
-				fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
-				array = new ArrayList<Integer>();
-				for (FileEt fileEt : fileList) {
-					array.add(fileEt.getFileId());
-					model.addElement(fileEt.getFilePath() + fileEt.getFileMd());
-				}
-				//list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);					
-			}
-		});*/
 		
 		
 		JButton button2 = new JButton("開く");
@@ -258,9 +240,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 		general.setAlwaysOnTop(true);
-		//general.setResizable(false);
-		general.setLayout(new FlowLayout());
-		general.setBounds(200, 200, 370, 300);
+		general.setResizable(false);
+		general.setBounds(200, 200, 450, 150);
 		
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -274,7 +255,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		panel2.add(day);
 		panel2.add(button);
 		panel2.add(button2);
-		panel3.add(list);
+		panel3.add(box);
 		general.add(panel);
 		general.add(panel2);
 		general.add(panel3);
