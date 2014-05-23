@@ -47,11 +47,11 @@ public class TextEditor extends JFrame implements ActionListener{
 	 */
 	static JTextArea textArea = new JTextArea();
 	/**
-	 * 
+	 * 世代管理用ファイルリスト
 	 */
 	static List<FileEt> fileList;
 	/**
-	 * 
+	 * 世代管理用主キー保存リスト
 	 */
 	static List<Integer> array;
 	
@@ -189,6 +189,10 @@ public class TextEditor extends JFrame implements ActionListener{
 	 * 世代管理をする
 	 */
 	public void gManage(){
+		JPanel panel = new JPanel();
+		JPanel panel2 = new JPanel();
+		final JPanel panel3 = new JPanel();
+		
 		final JFrame general = new JFrame("世代管理");
 		final JLabel label = new JLabel("作成年月日");
 		final JLabel year = new JLabel("年");
@@ -232,6 +236,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent actionevent){
 				textArea.setText(gm.getText(array.get(list.getSelectedIndex())));
+				panel3.add(box);
 			}
 		});
 		
@@ -243,9 +248,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		general.setResizable(false);
 		general.setBounds(200, 200, 450, 150);
 		
-		JPanel panel = new JPanel();
-		JPanel panel2 = new JPanel();
-		JPanel panel3 = new JPanel();
+		
 		panel.add(label);
 		panel2.add(comboYear);
 		panel2.add(year);
@@ -255,7 +258,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		panel2.add(day);
 		panel2.add(button);
 		panel2.add(button2);
-		panel3.add(box);
+		
 		general.add(panel);
 		general.add(panel2);
 		general.add(panel3);
