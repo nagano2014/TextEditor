@@ -144,7 +144,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		}
 		// 「世代管理」メニューを選んだ時
 		else if (action.equals("世代管理") ) {
-			generationManager();
+			gManage();
 		}
 		// 「印刷」メニューを選んだ時
 		else if (action.equals("印刷")) {
@@ -189,7 +189,7 @@ public class TextEditor extends JFrame implements ActionListener{
 	/**
 	 * 世代管理をする
 	 */
-	public void generationManager(){
+	public void gManage(){
 		final JFrame general = new JFrame("世代管理");
 		final JLabel label = new JLabel("作成年月日");
 		final JLabel year = new JLabel("年");
@@ -210,9 +210,9 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		JButton button = new JButton("選択");
 		final DefaultListModel model = new DefaultListModel();
-		final JList list = new JList(model);
-		
 		final GenerationManager gm = new GenerationManager();
+		
+		final JList list = new JList(model);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionevent){
 				model.clear();
@@ -225,6 +225,26 @@ public class TextEditor extends JFrame implements ActionListener{
 				list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);					
 			}
 		});
+		
+	/*	JButton button = new JButton("選択");
+		final DefaultListModel model = new DefaultListModel();
+		final GenerationManager gm = new GenerationManager();
+		final JList list = new JList(model);
+		JComboBox box = new JComboBox();
+		box.setEditable(true);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent actionevent){
+				model.clear();
+				fileList = gm.getFileList((String)comboYear.getSelectedItem(), (String)comboMonth.getSelectedItem(), (String)comboDay.getSelectedItem());
+				array = new ArrayList<Integer>();
+				for (FileEt fileEt : fileList) {
+					array.add(fileEt.getFileId());
+					model.addElement(fileEt.getFilePath() + fileEt.getFileMd());
+				}
+				//list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);					
+			}
+		});*/
+		
 		
 		JButton button2 = new JButton("開く");
 		button2.addActionListener(new ActionListener(){
