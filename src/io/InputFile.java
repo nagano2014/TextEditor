@@ -34,10 +34,12 @@ public class InputFile{
 			BufferedReader br;
 			try{
 				if (file.isFile() && file.canRead()){
-					br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"SHIFT_JIS"));
+					br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"MS932"));
 					String str;
 					while((str = br.readLine()) != null){
-						sb.append(str + "\n");
+						str = str.concat("\n");
+						str = new String(str.getBytes("UTF-8"), "UTF-8");
+						sb.append(str);
 					}
 					br.close();
 				}
@@ -47,6 +49,10 @@ public class InputFile{
 		}
 		return text;
 	}
+	/**
+	 * 拡張子がtxtであるファイルに限定するフィルタを作成する
+	 * @return
+	 */
 	private static FileNameExtensionFilter createTxtFilter(){
 		return new FileNameExtensionFilter("txtファイル", "txt", "TXT");
 	}

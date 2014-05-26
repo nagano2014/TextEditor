@@ -33,6 +33,13 @@ public class Replacement{
 	 * @return 置換可能ならtrue
 	 */
 	private static boolean canReplace(JTextArea area, String oldWord){
+		/*
+		 * テキストエリアが空ではない
+		 * かつ
+		 * 置換前文字列が空ではない
+		 * かつ
+		 * テキスト内に置換前文字列が存在する
+		 */
 		return area.getText().indexOf(oldWord) != -1 && !area.getText().equals("") && !oldWord.equals("");
 	}
 }

@@ -33,10 +33,11 @@ public class GenerationManager {
 		BufferedReader br;
 		try{
 			if (file.isFile() && file.canRead()){
-				br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"MS932"));
 				String str;
 				while((str = br.readLine()) != null){
 					lineNumber++;
+					str = new String(str.getBytes("UTF-8"), "UTF-8");
 					tDao.insert(fileId, lineNumber, str);
 				}
 				br.close();

@@ -187,6 +187,8 @@ public class TextEditor extends JFrame implements ActionListener{
 	 * 世代管理をする
 	 */
 	public void gManage(){
+		array = null;
+		fileList = null;
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
 		final JPanel panel3 = new JPanel();
@@ -211,7 +213,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		
 		
 		JButton button = new JButton("日付選択");
-		final GenerationManager gm = new GenerationManager();		
+		final GenerationManager gm = new GenerationManager();
 		final JComboBox box = new JComboBox(new String[]{"選択してください"});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionevent){
@@ -229,18 +231,24 @@ public class TextEditor extends JFrame implements ActionListener{
 		JButton button2 = new JButton("開く");
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent actionevent){
-				textArea.setText(gm.getText(array.get(box.getSelectedIndex())));
+				String msg = (String)box.getSelectedItem();
+				if (!msg.equals("選択してください")) {
+					textArea.setText(gm.getText(array.get(box.getSelectedIndex())));
+				} else {
+					JDialog openError = new JDialog(general, "オープンエラー", true);
+					openError.setLayout(new FlowLayout());
+					openError.setBounds(300, 200, 400, 100);
+					JLabel errorMessage = new JLabel("開くファイルを選択してください");
+					openError.add(errorMessage);
+					openError.setVisible(true);
+				}
 			}
 		});
-		
-		
-			
 		
 		general.setLayout(new BoxLayout(general.getContentPane(), BoxLayout.Y_AXIS));
 		general.setAlwaysOnTop(true);
 		general.setResizable(false);
 		general.setBounds(200, 200, 600, 150);
-		
 		
 		panel.add(label);
 		panel2.add(comboYear);
@@ -265,7 +273,7 @@ public class TextEditor extends JFrame implements ActionListener{
 			textArea.print();
 		} catch (PrinterException e1) {
 			e1.printStackTrace();
-		}
+		}		
 	}
 	/**
 	 * 文字列を検索する
