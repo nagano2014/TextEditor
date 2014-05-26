@@ -11,13 +11,29 @@ import java.util.Date;
  */
 
 public class FileEt {
+	
+	/**
+	 * フィールド
+	 */
+	
 	private int fileId;
 	private String filePath;
 	private Timestamp fileMakeDay;
 	
+	/**
+	 * コンストラクタ
+	 */
+	
 	public FileEt(){
 		
 	}
+	
+	/**
+	 * コンストラクタ
+	 * @param fileId
+	 * @param filePath
+	 * @param fileMakeDay
+	 */
 	
 	public FileEt(int fileId, String filePath, Timestamp fileMakeDay){
 		this.fileId = fileId;

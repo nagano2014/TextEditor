@@ -1,21 +1,32 @@
 package entity;
 
+/**
+ * テキストエンティティ
+ * @author 高松
+ *
+ * データの取得と格納
+ */
 
 public class TextEt {
 	private int fileId;
 	private int lineNumber;
 	private String lineContents;
 	
+	
 	/**
-	 * テキストエンティティ
-	 * @author 高松
-	 *
-	 * データの取得と格納
+	 * コンストラクタ
 	 */
 	
 	public TextEt(){
 		
 	}
+	
+	/**
+	 * コンストラクタ
+	 * @param fileId
+	 * @param lineNumber
+	 * @param lineContents
+	 */
 	
 	public TextEt(int fileId, int lineNumber, String lineContents){
 		this.fileId = fileId;
