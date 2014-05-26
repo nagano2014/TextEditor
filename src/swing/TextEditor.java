@@ -67,6 +67,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenu menu2 = new JMenu("編集");
 		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		textArea.setFont(new Font("Meiryo UI", Font.PLAIN, 40));
 		
 		// メニューアイテム作成
 		JMenuItem open = new JMenuItem("開く");
@@ -121,6 +122,10 @@ public class TextEditor extends JFrame implements ActionListener{
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * 開始メソッド
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new TextEditor();
 	}
