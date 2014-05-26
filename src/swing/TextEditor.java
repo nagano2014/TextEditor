@@ -231,9 +231,10 @@ public class TextEditor extends JFrame implements ActionListener{
 		JButton button2 = new JButton("開く");
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent actionevent){
-				try {
+				String msg = (String)box.getSelectedItem();
+				if (!msg.equals("選択してください")) {
 					textArea.setText(gm.getText(array.get(box.getSelectedIndex())));
-				} catch (NullPointerException e) {
+				} else {
 					JDialog openError = new JDialog(general, "オープンエラー", true);
 					openError.setLayout(new FlowLayout());
 					openError.setBounds(300, 200, 400, 100);
