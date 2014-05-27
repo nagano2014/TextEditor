@@ -81,7 +81,7 @@ public class FileDAO extends DAO{
 	
 	/**
 	 * 
-	 * @return 最大のファイルID
+	 * @return 最後のファイルID
 	 */
 	
 	public int getLatestFileId(){
