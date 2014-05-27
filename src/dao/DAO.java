@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * アブストラクトDAO
+ * データベース接続の取得とステートメントの取得
  * @author 高松
  *
- * データベース接続の取得とステートメントの取得
+ * 
  */
 
 public abstract class DAO {
