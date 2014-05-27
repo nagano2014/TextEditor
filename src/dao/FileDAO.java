@@ -9,11 +9,18 @@ import java.util.List;
 
 import entity.FileEt;
 
+/**
+ * FileDAO
+ * @author 会津
+ *
+ */
+
 public class FileDAO extends DAO{
 	
-	/*
-	 * ファイルDAO
-	 * 会津匠
+	/**
+	 * 
+	 * @param filePath
+	 * @return SQL文の実行回数
 	 */
 	
 	public int insert(String filePath) {
@@ -35,6 +42,13 @@ public class FileDAO extends DAO{
 		
 		return count;
 	}
+	
+	/**
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return 検索結果
+	 */
 	
 	public List<FileEt> selectByDate(Date date1, Date date2) {
 		getConnection();
@@ -64,6 +78,11 @@ public class FileDAO extends DAO{
 		}
 		return list;
 	}
+	
+	/**
+	 * 
+	 * @return 最後のファイルID
+	 */
 	
 	public int getLatestFileId(){
 		int id = -1;
