@@ -67,6 +67,8 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenu menu2 = new JMenu("編集");
 		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
 		textArea.setFont(new Font("Meiryo UI", Font.PLAIN, 40));
 		
 		// メニューアイテム作成
@@ -81,15 +83,15 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuItem paste = new JMenuItem("貼り付け");
 		
 		// メニューアイテムの文字フォント設定
-		open.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		save.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		generalManagement.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		print.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		search.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		cut.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		paste.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		copy.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
+		open.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		save.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		generalManagement.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		print.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		search.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		replace.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		cut.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		paste.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
+		copy.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
 		
 		// メニューアイテムの追加
 		menu1.add(open);
