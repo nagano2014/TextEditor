@@ -65,8 +65,6 @@ public class TextEditor extends JFrame implements ActionListener{
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu1 = new JMenu("ファイル");
 		JMenu menu2 = new JMenu("編集");
-		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
-		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 13));
 		menu1.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
 		menu2.setFont(new Font("Meiryo UI", Font.PLAIN, 20));
 		textArea.setFont(new Font("Meiryo UI", Font.PLAIN, 40));
