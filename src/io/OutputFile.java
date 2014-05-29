@@ -9,6 +9,11 @@ import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
+/**
+ * ファイルをローカルに保存し、データベースに情報を格納する
+ * @author nagano02
+ *
+ */
 public class OutputFile {
 	public static void save(JTextArea area){
 		JFileChooser filechooser = new JFileChooser();

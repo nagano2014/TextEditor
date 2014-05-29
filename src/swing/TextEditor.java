@@ -102,7 +102,7 @@ public class TextEditor extends JFrame implements ActionListener{
 		menu2.add(copy);
 		menu2.add(paste);
 		
-		// イベントリスクの設定
+		// イベントリスナーの設定
 		open.addActionListener(this);
 		save.addActionListener(this);
 		generalManagement.addActionListener(this);

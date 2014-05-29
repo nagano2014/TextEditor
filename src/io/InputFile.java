@@ -49,6 +49,10 @@ public class InputFile{
 		}
 		return text;
 	}
+	/**
+	 * 拡張子がtxtであるファイルに限定するフィルタを作成する
+	 * @return
+	 */
 	private static FileNameExtensionFilter createTxtFilter(){
 		return new FileNameExtensionFilter("txtファイル", "txt", "TXT");
 	}

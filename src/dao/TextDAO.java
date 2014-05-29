@@ -7,11 +7,20 @@ import java.util.List;
 
 import entity.TextEt;
 
+/**
+ * TextDAO
+ * @author 会津
+ *
+ */
+
 public class TextDAO extends DAO{
 
-	/*
-	 * テキストDAO
-	 * 会津匠
+	/**
+	 * 
+	 * @param fileId
+	 * @param lineNumber
+	 * @param lineContents
+	 * @return SQL文の実行回数
 	 */
 	
 	public int insert(int fileId, int lineNumber, String lineContents) {
@@ -33,6 +42,12 @@ public class TextDAO extends DAO{
 		
 		return count;
 	}
+	
+	/**
+	 * 
+	 * @param fileId
+	 * @return 検索結果
+	 */
 	
 	public List<TextEt> selectByFileId(int fileId) {
 		getConnection();
