@@ -399,5 +399,4 @@ public class TextEditor extends JFrame implements ActionListener{
 	public void paste(){
 		textArea.paste();
 	}
-	
 }
